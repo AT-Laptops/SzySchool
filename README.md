@@ -1,1 +1,3 @@
 # SzySchool
+
+Hej!
