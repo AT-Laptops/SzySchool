@@ -12,7 +12,6 @@ const Sidebar = () => {
         //     <SidebarElement></SidebarElement>
         //     <SidebarElement></SidebarElement>
         // </nav>
-
         <Navigation>
         </Navigation>
     );

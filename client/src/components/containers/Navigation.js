@@ -11,7 +11,7 @@ const Navigation = () => {
         //     <Link to="/" className="navbar__element__link"></Link>
         // </div>
 
-        <nav>
+        <nav className="navbar">
             <div onClick={() => setState('home')} className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/" className="navbar__element__link" ></Link>
             </div>
