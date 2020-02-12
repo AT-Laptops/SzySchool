@@ -7,12 +7,12 @@ const Navigation = () => {
     const [state, setState] = useState('home');
 
     return (
-        <nav>
+        <nav className='navbar'>
             <div onClick={() => setState('home')} className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
-                <Link to="/" className="navbar__element__link" />
+            <Link to="/" className="navbar__element__link" >{state}</Link>
             </div>
-            <div onClick={() => setState('login')} className={state === 'login' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
-                <Link to="/login" className="navbar__element__link" />
+            <div onClick={() => setState('calendar')} className={state === 'calendar' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
+                <Link to="/calendar" className="navbar__element__link" >{state}</Link>
             </div>
         </nav>
     );
