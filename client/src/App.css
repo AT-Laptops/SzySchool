@@ -1,0 +1,24 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #F6F6F6;
+}
+
+.navbar {
+    position: fixed;
+    bottom: 0;
+    background-color: #540D6E;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar__element {
+    width: 33%;
+    transition: 0.5s;
+}
