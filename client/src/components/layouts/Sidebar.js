@@ -8,6 +8,8 @@ const Sidebar = () => {
         <nav className="navbar">
             <SidebarElement></SidebarElement>
             <SidebarElement></SidebarElement>
+            <SidebarElement></SidebarElement>
+            <SidebarElement></SidebarElement>
         </nav>
     );
 }
