@@ -22,3 +22,7 @@ body {
     width: 33%;
     transition: 0.5s;
 }
+
+.navbar__element--active {
+    background-color: #67297D;
+}
