@@ -13,15 +13,6 @@ const ProfileSchema = new mongoose.Schema({
         default: "active",
         enum: ['active','inactive','deleted']
     },
-    notes: [{
-        title: {
-            type:String,
-            default: "Tytuł",
-        },
-        content: {
-            type:String,
-        }
-    }],
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
