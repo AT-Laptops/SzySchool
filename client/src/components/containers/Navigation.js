@@ -1,13 +1,14 @@
 import './../../App.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Navigation = () => {
 
     const [state, setState] = useState('home');
 
     return (
-        <nav>
+        <nav className="navbar">
             <div onClick={() => setState('home')} className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/" className="navbar__element__link" />
             </div>
@@ -18,4 +19,4 @@ const Navigation = () => {
     );
 }
 
-export default Navigation;
+export default connect()(Navigation);

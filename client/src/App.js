@@ -14,6 +14,7 @@ function App() {
         </Layout>
         <Switch>
           <Route exact path="/" component={Home}></Route>
+          <Route exact path="/login" component={Home}></Route>
         </Switch>
       </Router>
     </Provider>

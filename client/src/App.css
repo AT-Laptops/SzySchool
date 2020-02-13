@@ -26,3 +26,9 @@ body {
 .navbar__element--active {
     background-color: #67297D;
 }
+
+.navbar__element__link {
+    display: block;
+    width:100%;
+    height: 100%;
+}
