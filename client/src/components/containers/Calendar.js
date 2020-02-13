@@ -16,6 +16,13 @@ const Calendar = () => {
         }
     });
 
+    function updateDate() {
+        setDate(new Date());
+        setYear(date.getFullYear());
+        setMonth(date.getMonth() + 1);
+        setDay(date.getDate());
+    }
+
     const week = [
         {
             dayNumber: 1, 
@@ -56,16 +63,13 @@ const Calendar = () => {
 
     const calendarHeader = [];
 
-    for (const [index, value] of week.entries()) {
-        calendarHeader.push(<th key={index}>{value.dayShortName}</th>);
-    }
-    
+    const firstDay = (year, month) => {
+        let date = new Date(year, month, 1);
+        return date.getDay();
+    };
 
-    function updateDate() {
-        setDate(new Date());
-        setYear(date.getFullYear());
-        setMonth(date.getMonth() + 1);
-        setDay(date.getDate());
+    for (const [index, value] of week.entries()) {
+        calendarHeader.push(<th className={ firstDay === index + 1 ? 'currentDay' : '' } key={index}>{value.dayShortName}</th>);
     }
 
     return (
