@@ -5,11 +5,11 @@ const Calendar = () => {
 
     const [date, setDate] = useState(new Date());
     const [year, setYear] = useState(date.getFullYear());
-    const [month, setMonth] = useState(date.getMonth() + 1);
+    const [month, setMonth] = useState(date.getMonth());
     const [day, setDay] = useState(date.getDate());
 
     useEffect(() => {
-        const interval = setInterval(() => updateDate(), 1000);
+        const interval = setInterval(() => updateDate(), 60000);
 
         return function cleanUp() {
             clearInterval(interval);
@@ -19,7 +19,7 @@ const Calendar = () => {
     function updateDate() {
         setDate(new Date());
         setYear(date.getFullYear());
-        setMonth(date.getMonth() + 1);
+        setMonth(date.getMonth());
         setDay(date.getDate());
     }
 
@@ -63,13 +63,22 @@ const Calendar = () => {
 
     const calendarHeader = [];
 
-    const firstDay = (year, month) => {
-        let date = new Date(year, month, 1);
-        return date.getDay();
+    function firstDay(year, month) {
+        const data = new Date(year, month, 1);
+        return data.getDay();
     };
 
+    function lastDay(year, month) {
+        const data = new Date(year, month + 1, 0);
+        console.log(data.getDay());
+        return data.getDay();
+    };
+
+    
+
+
     for (const [index, value] of week.entries()) {
-        calendarHeader.push(<th className={ firstDay === index + 1 ? 'currentDay' : '' } key={index}>{value.dayShortName}</th>);
+        calendarHeader.push(<th className={ firstDay(year, month) === value.dayNumber ? 'currentDay' : '' } key={index}>{value.dayShortName}</th>);
     }
 
     return (
