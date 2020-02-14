@@ -7,6 +7,7 @@ const Calendar = () => {
     const [year, setYear] = useState(date.getFullYear());
     const [month, setMonth] = useState(date.getMonth());
     const [day, setDay] = useState(date.getDate());
+    const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(year, month + 1));
 
     useEffect(() => {
         const interval = setInterval(() => updateDate(), 60000);
@@ -21,6 +22,14 @@ const Calendar = () => {
         setYear(date.getFullYear());
         setMonth(date.getMonth());
         setDay(date.getDate());
+    }
+
+    function getFirstDay (year, month) {
+        return new Date(year, month, 1).getDay();
+    };
+
+    function getDaysInMonth(year, month) {
+        return new Date(year, month, 0).getDate();
     }
 
     const week = [
@@ -60,42 +69,39 @@ const Calendar = () => {
             dayShortName: 'Nd',
         }
     ];
+    
+    function generateCalendar(daysInMonth) {
+        const calendarDays = [];
+        const firstDay = getFirstDay(year, month, 1);
+
+        for (let i = 0; i < firstDay - 1; i++) {
+            calendarDays.push(<div className={ 'calendar__month__day' } key={'empty' + i}></div>)
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            calendarDays.push(<div className={ i === day ? 'calendar__month calendar__month__day--active' : 'calendar__month__day' } key={i}>{i}</div>)
+        }
+
+        return calendarDays;
+    }
+
+    const calendarDays = generateCalendar(daysInMonth);
 
     const calendarHeader = [];
 
-    function firstDay(year, month) {
-        const data = new Date(year, month, 1);
-        return data.getDay();
-    };
-
-    function lastDay(year, month) {
-        const data = new Date(year, month + 1, 0);
-        console.log(data.getDay());
-        return data.getDay();
-    };
-
+    for (const [index, value] of week.entries()) {
+        calendarHeader.push(<div key={index}>{value.dayShortName}</div>);
+    }
     
 
-
-    for (const [index, value] of week.entries()) {
-        calendarHeader.push(<th className={ firstDay(year, month) === value.dayNumber ? 'currentDay' : '' } key={index}>{value.dayShortName}</th>);
-    }
-
     return (
-        <div>
+        <div className='calendar'>
             <h2>{year}</h2>
             <h3>{month}</h3>
-            <table>
-                <thead>
-                    <tr>
-                        {calendarHeader}
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-
+            <div className='calendar__month'>
+                {calendarHeader}
+                {calendarDays}
+            </div>
         </div>
     )
 }

@@ -33,7 +33,15 @@ body {
     height: 100%;
 }
 
-.currentDay {
-    color: #540D6E;
-    font-size: 50px;
+.calendar__month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+}
+
+.calendar__month__day--active {
+    background-color: #540D6E;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
 }
