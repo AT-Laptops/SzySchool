@@ -142,7 +142,7 @@ const Calendar = () => {
     return (
         <div className='calendar'>
             <h2>{year}</h2>
-            <input type="text" value={ month.monthName }/>
+            <input type="text" value={ month.monthName } />
             <div className='calendar__month'>
                 {calendarHeader}
                 {calendarDays}
