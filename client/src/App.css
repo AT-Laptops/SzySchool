@@ -45,3 +45,7 @@ body {
     justify-content: center;
     border-radius: 50%;
 }
+
+.calendar__month__day--lastMonth {
+    color: grey;
+}

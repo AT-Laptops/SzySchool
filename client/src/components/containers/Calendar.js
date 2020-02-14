@@ -5,31 +5,91 @@ const Calendar = () => {
 
     const [date, setDate] = useState(new Date());
     const [year, setYear] = useState(date.getFullYear());
-    const [month, setMonth] = useState(date.getMonth());
+    const [month, setMonth] = useState({
+        month: date.getMonth(),
+        monthName: getMonthName(date.getMonth()),
+        firstDay: getFirstDay(year, date.getMonth()),
+        lastDay: getLastDay(year, date.getMonth()),
+        daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
+        daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
+    });
     const [day, setDay] = useState(date.getDate());
-    const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(year, month + 1));
 
     useEffect(() => {
-        const interval = setInterval(() => updateDate(), 60000);
+        // const interval = setInterval(() => updateDate(), 60000);
 
-        return function cleanUp() {
-            clearInterval(interval);
-        }
+        // return function cleanUp() {
+        //     clearInterval(interval);
+        // }
     });
 
     function updateDate() {
         setDate(new Date());
         setYear(date.getFullYear());
-        setMonth(date.getMonth());
+        setMonth({
+            month: date.getMonth(),
+            firstDay: getFirstDay(year, date.getMonth() + 1),
+            lastDay: getLastDay(year, date.getMonth()),
+            daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
+            daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
+        });
         setDay(date.getDate());
     }
 
-    function getFirstDay (year, month) {
+    function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
+    };
+
+    function getLastDay(year, month) {
+        return new Date(year, month + 1, 0).getDay();
     };
 
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
+    }
+
+    function getMonthName(monthNumber) {
+        switch(monthNumber) {
+            case 0:
+                return 'Styczeń';
+            case 1: 
+                return 'Luty';
+            case 2:
+                return 'Marzec';
+            case 3:
+                return 'Kwieceń';
+            case 4: 
+                return 'Maj';
+            case 5:
+                return 'Czerwiec';
+            case 6:
+                return 'Lipiec';
+            case 7:
+                return 'Sierpień';
+            case 8:
+                return 'Wrzesień';
+            case 9:
+                return 'Październik';
+            case 10:
+                return 'Listopad';
+            case 11:
+                return 'Grudzień';
+        }
+    }
+
+    function generateCalendar(daysInMonth, daysInPrevMonth, lastDay) {
+        const calendarDays = [];
+
+
+        for (let i = lastDay - 1; i > 0; i--, daysInPrevMonth--) {
+            calendarDays.unshift(<div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i}>{ daysInPrevMonth }</div>)
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            calendarDays.push(<div className={ i === day ? 'calendar__month calendar__month__day--active' : 'calendar__month__day' } key={i}>{i}</div>)
+        }
+
+        return calendarDays;
     }
 
     const week = [
@@ -69,23 +129,8 @@ const Calendar = () => {
             dayShortName: 'Nd',
         }
     ];
-    
-    function generateCalendar(daysInMonth) {
-        const calendarDays = [];
-        const firstDay = getFirstDay(year, month, 1);
 
-        for (let i = 0; i < firstDay - 1; i++) {
-            calendarDays.push(<div className={ 'calendar__month__day' } key={'empty' + i}></div>)
-        }
-
-        for (let i = 1; i <= daysInMonth; i++) {
-            calendarDays.push(<div className={ i === day ? 'calendar__month calendar__month__day--active' : 'calendar__month__day' } key={i}>{i}</div>)
-        }
-
-        return calendarDays;
-    }
-
-    const calendarDays = generateCalendar(daysInMonth);
+    const calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.lastDay);
 
     const calendarHeader = [];
 
@@ -97,7 +142,7 @@ const Calendar = () => {
     return (
         <div className='calendar'>
             <h2>{year}</h2>
-            <h3>{month}</h3>
+            <input type="text" value={ month.monthName }/>
             <div className='calendar__month'>
                 {calendarHeader}
                 {calendarDays}
