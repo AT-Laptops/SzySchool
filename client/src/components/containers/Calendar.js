@@ -114,6 +114,19 @@ const Calendar = () => {
         calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay);
     }
 
+    const prevMonth = (e) => {
+        e.preventDefault();
+
+        setMonth({
+            month: month.month - 1,
+            monthName: getMonthName(month.month - 1),
+            daysInMonth: getDaysInMonth(year, month.month - 1),
+            firstDay: getFirstDay(year, month.month - 1),
+            daysInPrevMonth: getDaysInMonth(year, month.month - 1),
+        });
+
+    }
+
     const week = [
         {
             dayNumber: 1, 
@@ -163,7 +176,7 @@ const Calendar = () => {
         <div className='calendar'>
             <h2>{year}</h2>
             <h3> { month.monthName } </h3>
-            <button >Następny</button>
+            <button onClick={ prevMonth }>Poprzedni</button>
             <button onClick={ nextMonth }>Następny</button>
             <div className='calendar__month'>
                 {calendarHeader}
