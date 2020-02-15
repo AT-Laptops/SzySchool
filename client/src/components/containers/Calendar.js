@@ -23,19 +23,19 @@ const Calendar = () => {
         // }
     });
 
-    function updateDate() {
-        setDate(new Date());
-        setYear(date.getFullYear());
-        setMonth({
-            month: date.getMonth(),
-            monthName: getMonthName(date.getMonth()),
-            firstDay: getFirstDay(year, date.getMonth()),
-            lastDay: getLastDay(year, date.getMonth()),
-            daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
-            daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
-        });
-        setDay(date.getDate());
-    }
+    // function updateDate() {
+    //     setDate(new Date());
+    //     setYear(date.getFullYear());
+    //     setMonth({
+    //         month: date.getMonth(),
+    //         monthName: getMonthName(date.getMonth()),
+    //         firstDay: getFirstDay(year, date.getMonth()),
+    //         lastDay: getLastDay(year, date.getMonth()),
+    //         daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
+    //         daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
+    //     });
+    //     setDay(date.getDate());
+    // }
 
     function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
