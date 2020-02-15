@@ -29,6 +29,9 @@ const Navigation = () => {
             <div onClick={() => setState('calendar')} className={state === 'calendar' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/calendar" className="navbar__element__link" ></Link>
             </div>
+            <div onClick={() => setState('register')} className={state === 'register' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
+                <Link to="/register" className="navbar__element__link" ></Link>
+            </div>
         </nav>
     );
 }

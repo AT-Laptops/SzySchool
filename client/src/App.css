@@ -69,3 +69,8 @@ body {
 .calendar__month__day--lastMonth {
     color: grey;
 }
+
+.register {
+    display: flex;
+    flex-direction: column;
+}

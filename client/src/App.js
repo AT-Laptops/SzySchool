@@ -6,6 +6,7 @@ import './App.css';
 import Layout from './components/layouts/Layout';
 import Home from './components/layouts/Home';
 import CalendarPage from './components/layouts/CalendarPage';
+import Register from './components/layouts/Register';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/calendar" component={CalendarPage}></Route>
+          <Route exact path="/register" component={Register}></Route>
         </Switch>
       </Router>
     </Provider>
