@@ -88,11 +88,11 @@ const Calendar = () => {
 
 
         for (let i = firstDay - 1; i > 0; i--, daysInPrevMonth--) {
-            calendarDays.unshift(<div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i}>{ daysInPrevMonth }</div>)
+            calendarDays.unshift(<div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i}><span className={ 'calendar__month__day__text' }>{ daysInPrevMonth }</span></div>)
         }
 
         for (let i = 1; i <= daysInMonth; i++) {
-            calendarDays.push(<div className={ i === day ? 'calendar__month calendar__month__day--active' : 'calendar__month__day' } key={i}>{i}</div>)
+            calendarDays.push(<div className={ i === day ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
         }
 
         return calendarDays;
