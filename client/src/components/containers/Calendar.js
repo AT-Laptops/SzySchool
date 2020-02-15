@@ -10,7 +10,7 @@ const Calendar = () => {
         monthName: getMonthName(date.getMonth()),
         firstDay: getFirstDay(year, date.getMonth()),
         lastDay: getLastDay(year, date.getMonth()),
-        daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
+        daysInMonth: getDaysInMonth(year, date.getMonth()),
         daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
     });
     const [day, setDay] = useState(date.getDate());
@@ -28,7 +28,8 @@ const Calendar = () => {
         setYear(date.getFullYear());
         setMonth({
             month: date.getMonth(),
-            firstDay: getFirstDay(year, date.getMonth() + 1),
+            monthName: getMonthName(date.getMonth()),
+            firstDay: getFirstDay(year, date.getMonth()),
             lastDay: getLastDay(year, date.getMonth()),
             daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
             daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
@@ -45,7 +46,7 @@ const Calendar = () => {
     };
 
     function getDaysInMonth(year, month) {
-        return new Date(year, month, 0).getDate();
+        return new Date(year, month + 1, 0).getDate();
     }
 
     function getMonthName(monthNumber) {
@@ -74,14 +75,19 @@ const Calendar = () => {
                 return 'Listopad';
             case 11:
                 return 'Grudzień';
+            default:
+                return null;
         }
     }
 
-    function generateCalendar(daysInMonth, daysInPrevMonth, lastDay) {
+    function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
         const calendarDays = [];
 
+        if (firstDay === 0)
+            firstDay = 7;
 
-        for (let i = lastDay - 1; i > 0; i--, daysInPrevMonth--) {
+
+        for (let i = firstDay - 1; i > 0; i--, daysInPrevMonth--) {
             calendarDays.unshift(<div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i}>{ daysInPrevMonth }</div>)
         }
 
@@ -90,6 +96,22 @@ const Calendar = () => {
         }
 
         return calendarDays;
+    }
+
+    let calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay);
+
+    const nextMonth = (e) => {
+        e.preventDefault();
+
+        setMonth({
+            month: month.month + 1,
+            monthName: getMonthName(month.month + 1),
+            daysInMonth: getDaysInMonth(year, month.month + 1),
+            firstDay: getFirstDay(year, month.month + 1),
+            daysInPrevMonth: getDaysInMonth(year, month.month + 1),
+        });
+
+        calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay);
     }
 
     const week = [
@@ -130,8 +152,6 @@ const Calendar = () => {
         }
     ];
 
-    const calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.lastDay);
-
     const calendarHeader = [];
 
     for (const [index, value] of week.entries()) {
@@ -142,7 +162,9 @@ const Calendar = () => {
     return (
         <div className='calendar'>
             <h2>{year}</h2>
-            <input type="text" value={ month.monthName } />
+            <h3> { month.monthName } </h3>
+            <button >Następny</button>
+            <button onClick={ nextMonth }>Następny</button>
             <div className='calendar__month'>
                 {calendarHeader}
                 {calendarDays}
