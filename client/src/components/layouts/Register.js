@@ -1,8 +1,10 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { register } from './../../actions/register';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const Register = () => {
+const Register = ({register, isAuthenticate}) => {
     const [form, setForm] = useState({
         email: '',
         password: '',
@@ -20,6 +22,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('dupa');
         register(email, password);
     }
 
@@ -33,4 +36,16 @@ const Register = () => {
     )
 }
 
-export default Register;
+Register.propTypes = {
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+};
+  
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+  
+export default connect(
+    mapStateToProps,
+    { register }
+)(Register);
