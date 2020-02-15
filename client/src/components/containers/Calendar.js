@@ -11,9 +11,10 @@ const Calendar = () => {
         firstDay: getFirstDay(year, date.getMonth()),
         lastDay: getLastDay(year, date.getMonth()),
         daysInMonth: getDaysInMonth(year, date.getMonth()),
-        daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
+        daysInPrevMonth: getDaysInMonth(year, date.getMonth() - 1),
     });
     const [day, setDay] = useState(date.getDate());
+    const [calendar, setCalendar] = useState(null);
 
     useEffect(() => {
         // const interval = setInterval(() => updateDate(), 60000);
@@ -21,7 +22,27 @@ const Calendar = () => {
         // return function cleanUp() {
         //     clearInterval(interval);
         // }
-    });
+        function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
+            const calendarDays = [];
+            console.log(daysInMonth);
+    
+            if (firstDay === 0)
+                firstDay = 7;
+    
+    
+            for (let i = firstDay - 1; i > 0; i--, daysInPrevMonth--) {
+                calendarDays.unshift(<div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i}><span className={ 'calendar__month__day__text' }>{ daysInPrevMonth }</span></div>)
+            }
+    
+            for (let i = 1; i <= daysInMonth; i++) {
+                calendarDays.push(<div className={ i === day ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
+            }
+    
+            return calendarDays;
+        }
+
+        setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
+    }, [month.daysInMonth, month.daysInPrevMonth, month.firstDay, day]);
 
     // function updateDate() {
     //     setDate(new Date());
@@ -80,27 +101,7 @@ const Calendar = () => {
         }
     }
 
-    function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
-        const calendarDays = [];
-
-        if (firstDay === 0)
-            firstDay = 7;
-
-
-        for (let i = firstDay - 1; i > 0; i--, daysInPrevMonth--) {
-            calendarDays.unshift(<div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i}><span className={ 'calendar__month__day__text' }>{ daysInPrevMonth }</span></div>)
-        }
-
-        for (let i = 1; i <= daysInMonth; i++) {
-            calendarDays.push(<div className={ i === day ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
-        }
-
-        return calendarDays;
-    }
-
-    let calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay);
-
-    const nextMonth = (e) => {
+    function nextMonth(e) {
         e.preventDefault();
 
         setMonth({
@@ -110,21 +111,16 @@ const Calendar = () => {
             firstDay: getFirstDay(year, month.month + 1),
             daysInPrevMonth: getDaysInMonth(year, month.month),
         });
-
         
-        // if (month.month === 11) {
-        //     setYear(year + 1);
-        //     setMonth({
-        //         month: new Date(year, 0).getMonth() - 1,
-        //     });
-        // }
-        
-        // console.log(month.month + 1);
-
-        calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay);
+        if (month.month === 11) {
+            setYear(year + 1);
+            setMonth({
+                month: new Date(year, 0).getMonth() - 1,
+            });
+        }
     }
 
-    const prevMonth = (e) => {
+    function prevMonth(e) {
         e.preventDefault();
 
         setMonth({
@@ -134,7 +130,6 @@ const Calendar = () => {
             firstDay: getFirstDay(year, month.month - 1),
             daysInPrevMonth: getDaysInMonth(year, month.month - 2),
         });
-
     }
 
     const week = [
@@ -178,19 +173,19 @@ const Calendar = () => {
     const calendarHeader = [];
 
     for (const [index, value] of week.entries()) {
-        calendarHeader.push(<div key={index}>{value.dayShortName}</div>);
+        calendarHeader.push(<div className={ 'calendar__month__header' } key={index}>{value.dayShortName}</div>);
     }
     
 
     return (
         <div className='calendar'>
-            <h2>{year}</h2>
+            <h2>{ year }</h2>
             <h3> { month.monthName } </h3>
-            <button onClick={ prevMonth }>Poprzedni</button>
-            <button onClick={ nextMonth }>Następny</button>
+            <button onClick={ (e) => { prevMonth(e) } }>Poprzedni</button>
+            <button onClick={ (e) => { nextMonth(e)} }>Następny</button>
             <div className='calendar__month'>
-                {calendarHeader}
-                {calendarDays}
+                { calendarHeader }
+                { calendar }
             </div>
         </div>
     )

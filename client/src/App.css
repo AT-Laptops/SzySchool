@@ -39,6 +39,11 @@ body {
     grid-template-rows: auto;
 }
 
+.calendar__month__header {
+    display: flex;
+    justify-content: center;
+}
+
 .calendar__month__day {
     display: flex;
     justify-content: center;
