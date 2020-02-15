@@ -108,8 +108,18 @@ const Calendar = () => {
             monthName: getMonthName(month.month + 1),
             daysInMonth: getDaysInMonth(year, month.month + 1),
             firstDay: getFirstDay(year, month.month + 1),
-            daysInPrevMonth: getDaysInMonth(year, month.month + 1),
+            daysInPrevMonth: getDaysInMonth(year, month.month),
         });
+
+        
+        // if (month.month === 11) {
+        //     setYear(year + 1);
+        //     setMonth({
+        //         month: new Date(year, 0).getMonth() - 1,
+        //     });
+        // }
+        
+        // console.log(month.month + 1);
 
         calendarDays = generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay);
     }
@@ -122,7 +132,7 @@ const Calendar = () => {
             monthName: getMonthName(month.month - 1),
             daysInMonth: getDaysInMonth(year, month.month - 1),
             firstDay: getFirstDay(year, month.month - 1),
-            daysInPrevMonth: getDaysInMonth(year, month.month - 1),
+            daysInPrevMonth: getDaysInMonth(year, month.month - 2),
         });
 
     }
