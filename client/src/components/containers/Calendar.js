@@ -35,14 +35,14 @@ const Calendar = () => {
             }
     
             for (let i = 1; i <= daysInMonth; i++) {
-                calendarDays.push(<div className={ i === day ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
+                calendarDays.push(<div className={ i === day && date.getMonth() === month.month ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
             }
     
             return calendarDays;
         }
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
-    }, [month.daysInMonth, month.daysInPrevMonth, month.firstDay, day]);
+    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date]);
 
     // function updateDate() {
     //     setDate(new Date());
