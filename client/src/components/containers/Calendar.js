@@ -1,5 +1,6 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 const Calendar = () => {
 
@@ -191,4 +192,4 @@ const Calendar = () => {
     )
 }
 
-export default Calendar;
+export default connect()(Calendar);

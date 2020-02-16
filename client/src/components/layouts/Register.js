@@ -28,10 +28,19 @@ const Register = ({register, isAuthenticate}) => {
 
     return (
         <form className={ 'register' } action="" onSubmit={ handleSubmit } >
-            <input type="email" className={ 'register__input' } name='email' value={ email } onChange={ updateField } />
-            <input type="password" className={ 'register__input' } name='password' value={ password } onChange={ updateField } />
-            <input type="password" className={ 'register__input' } name='passwordRep' value={ passwordRep } onChange={ updateField } />
-            <input type="submit" value='Zarejestruj' onClick={ handleSubmit } />
+            <div className={ 'register__wrapper'}>
+                <label className={ 'register__wrapper__label' } htmlFor="email">Email</label>
+                <input type="email" className={ 'register__wrapper_input' } name='email' value={ email } onChange={ updateField } />
+            </div>
+            <div className={ 'register__wrapper'}>
+                <label className={ 'register__wrapper__label' } htmlFor="password">Hasło</label>
+                <input type="password" className={ 'register__wrapper_input' } name='password' value={ password } onChange={ updateField } />
+            </div>
+            <div className={ 'register__wrapper'}>
+                <label className={ 'register__wrapper__label' } htmlFor="passwordRep">Powtórz Hasło</label>
+                <input type="password" className={ 'register__wrapper_input' } name='passwordRep' value={ passwordRep } onChange={ updateField } />
+            </div>
+            <input type="submit" className={ 'register__submit' } value='Zarejestruj' onClick={ handleSubmit } />
         </form>
     )
 }

@@ -36,4 +36,4 @@ const Navigation = () => {
     );
 }
 
-export default connect()(Navigation);
+export default Navigation;

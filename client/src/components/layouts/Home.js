@@ -1,8 +1,12 @@
 import React from 'react';
+import Sidebar from './Sidebar';
 
 const Home = () => {
     return (
-        <p>Strona startowa</p>
+        <div className='Home'>
+            <p>Strona startowa</p>
+            <Sidebar></Sidebar>
+        </div>
     )
 }
 

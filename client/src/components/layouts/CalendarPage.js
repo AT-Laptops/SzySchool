@@ -1,9 +1,13 @@
 import React from 'react';
 import Calendar from './../containers/Calendar';
+import Sidebar from './Sidebar';
 
 const CalendarPage = () => {
     return (
-        <Calendar></Calendar>
+        <div className='CalendarPage'>
+            <Sidebar></Sidebar>
+            <Calendar></Calendar>
+        </div>
     )
 }
 
