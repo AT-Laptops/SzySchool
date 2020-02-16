@@ -74,7 +74,7 @@ body {
     color: grey;
 }
 
-.register {
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,17 +84,21 @@ body {
     height: 100vh;
 }
 
-.register__wrapper {
+.form__error {
+    color: white;
+}
+
+.form__wrapper {
     width: 270px;
     margin-bottom: 10px;
 }
 
-.register__wrapper__label {
+.form__wrapper__label {
     color: white;
     font-size: 0.9em;
 }
 
-.register__wrapper_input {
+.form__wrapper_input {
     width: 100%;
     font-size: 1em;
     padding: 3px;
@@ -102,7 +106,7 @@ body {
     border-radius: 5px;
 }
 
-.register__submit {
+.form__submit {
     padding: 3px;
     border: 0;
     background-color: white;

@@ -1,10 +1,39 @@
 import './../../App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { register } from './../../actions/register';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+const validate = form => {
+    // eslint-disable-next-line no-use-before-define
+    const reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i;
+    if(!form.email) {
+        return 'Email jest wymagany';
+    } else if (!reg.test(form.email)) {
+        return "Zły email";
+    }
+
+    if (!form.password) {
+        return "Hasło jest wymagane";
+    } else if (form.password < 8) {
+        return "Hasło jest za krótkie";
+    }
+
+    if (!form.passwordRep) {
+        return "Hasło jest wymagane";
+    } else if (form.passwordRep < 8) {
+        return "Hasło jest za krótkie";
+    }
+
+    if (form.password !== form.passwordRep) {
+        return "Hasła nie są identyczne";
+    }
+
+    return null;
+}
+
 const Register = ({register, isAuthenticate}) => {
+    const [error, setError] = useState(null);
     const [form, setForm] = useState({
         email: '',
         password: '',
@@ -22,25 +51,30 @@ const Register = ({register, isAuthenticate}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('dupa');
+        const errorMsg = validate(form);
+        if (errorMsg) {
+            setError(errorMsg);
+            return;
+        }
         register(email, password);
     }
 
     return (
-        <form className={ 'register' } action="" onSubmit={ handleSubmit } >
-            <div className={ 'register__wrapper'}>
-                <label className={ 'register__wrapper__label' } htmlFor="email">Email</label>
-                <input type="email" className={ 'register__wrapper_input' } name='email' value={ email } onChange={ updateField } />
+        <form className={ 'form' } action="" onSubmit={ handleSubmit } >
+            <p className={ 'form__error' }>{ error }</p>
+            <div className={ 'form__wrapper'}>
+                <label className={ 'form__wrapper__label' } htmlFor="email">Email</label>
+                <input type="email" className={ 'form__wrapper_input' } name='email' value={ email } onChange={ updateField } />
             </div>
-            <div className={ 'register__wrapper'}>
-                <label className={ 'register__wrapper__label' } htmlFor="password">Hasło</label>
-                <input type="password" className={ 'register__wrapper_input' } name='password' value={ password } onChange={ updateField } />
+            <div className={ 'form__wrapper'}>
+                <label className={ 'form__wrapper__label' } htmlFor="password">Hasło</label>
+                <input type="password" className={ 'form__wrapper_input' } name='password' value={ password } onChange={ updateField } />
             </div>
-            <div className={ 'register__wrapper'}>
-                <label className={ 'register__wrapper__label' } htmlFor="passwordRep">Powtórz Hasło</label>
-                <input type="password" className={ 'register__wrapper_input' } name='passwordRep' value={ passwordRep } onChange={ updateField } />
+            <div className={ 'form__wrapper'}>
+                <label className={ 'form__wrapper__label' } htmlFor="passwordRep">Powtórz Hasło</label>
+                <input type="password" className={ 'form__wrapper_input' } name='passwordRep' value={ passwordRep } onChange={ updateField } />
             </div>
-            <input type="submit" className={ 'register__submit' } value='Zarejestruj' onClick={ handleSubmit } />
+            <input type="submit" className={ 'form__submit' } value='Zarejestruj' onClick={ handleSubmit } />
         </form>
     )
 }

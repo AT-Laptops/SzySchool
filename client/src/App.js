@@ -6,6 +6,7 @@ import './App.css';
 import PublicLayout from './components/layouts/PublicLayout';
 import PrivateLayout from './components/layouts/PrivateLayout';
 import CalendarPage from './components/layouts/CalendarPage';
+import Login from './components/layouts/Login';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route exact path="/calendar" component={ CalendarPage }></Route>
           <Route exact path='/register' component={ PrivateLayout }></Route>
+          <Route exact path="/login" component={ Login }></Route>
           <Route exact path="/" component={ PublicLayout }></Route>
         </Switch>
       </Router>
