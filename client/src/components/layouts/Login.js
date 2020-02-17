@@ -1,7 +1,8 @@
 import './../../App.css';
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
+import { login } from './../../actions/login';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const validate = form => {
     if(!form.email) {
@@ -38,7 +39,7 @@ const Login = () => {
             setError(errorMsg);
             return;
         }
-        console.log(form);
+        login(email, password);
     }
 
     return (
@@ -57,4 +58,16 @@ const Login = () => {
     )
 }
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+};
+  
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+  
+export default connect(
+    mapStateToProps,
+    { login }
+)(Login);
