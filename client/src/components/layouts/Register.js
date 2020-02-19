@@ -15,7 +15,7 @@ const validate = form => {
 
     if (!form.password) {
         return "Hasło jest wymagane";
-    } else if (form.password < 8) {
+    } else if (form.password < 6) {
         return "Hasło jest za krótkie";
     }
 
