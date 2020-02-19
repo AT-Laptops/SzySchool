@@ -16,7 +16,7 @@ const validate = form => {
     return null;
 }
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
     const [error, setError] = useState(null);
     const [form, setForm] = useState({
         email: '',
