@@ -69,7 +69,7 @@ router.post('/:id',auth,async(req,res)=>{
     GET api/notes/mine  -> zwróci ci wszystkie notatki zalogowanego użytkownika, każda notatka ma id, po kliknieciu na konkretna notatke nalezy przekierowac na GET api/notes/:id
     GET api/notes/add   -> widze to tak, że po naciśnieciu na guzik dodawania notatki wywołujesz tego GETa i dostajesz z powrotem id notatki
     GET api/notes/:id   -> zwraca ci tytuł, autora i content notatki
-    POST api/notes/:id  -> zapisuje zmiany, musiz mu wysłac tytuł nawet jak jest taki sam oraz content nawet jak jest taki sam
+    POST api/notes/:id  -> zapisuje zmiany, musiz mu wysłac tytuł nawet jak jest taki sam oraz content nawet jak jest taki sam, po zapisaniu zwroci ci "message":"complete". to znaczy ze masz przeładować stronę.
 */
 
 module.exports = router;
