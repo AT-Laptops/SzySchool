@@ -25,7 +25,6 @@ const Calendar = () => {
         // }
         function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
             const calendarDays = [];
-            console.log(month.month);
     
             if (firstDay === 0)
                 firstDay = 7;
