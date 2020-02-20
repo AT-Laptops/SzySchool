@@ -25,7 +25,6 @@ const Calendar = () => {
         // }
         function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
             const calendarDays = [];
-            console.log(daysInMonth);
     
             if (firstDay === 0)
                 firstDay = 7;
@@ -131,6 +130,13 @@ const Calendar = () => {
             firstDay: getFirstDay(year, month.month - 1),
             daysInPrevMonth: getDaysInMonth(year, month.month - 2),
         });
+
+        if (month.month === 0) {
+            setYear(year - 1);
+            setMonth({
+                month: new Date(year, 11).getMonth() + 1,
+            });
+        }
     }
 
     const week = [
