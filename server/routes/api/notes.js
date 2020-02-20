@@ -66,7 +66,6 @@ router.post('/:id',auth,async(req,res)=>{
 })
 
 /*
-
     GET api/notes/mine  -> zwróci ci wszystkie notatki zalogowanego użytkownika, każda notatka ma id, po kliknieciu na konkretna notatke nalezy przekierowac na GET api/notes/:id
     GET api/notes/add   -> widze to tak, że po naciśnieciu na guzik dodawania notatki wywołujesz tego GETa i dostajesz z powrotem id notatki
     GET api/notes/:id   -> zwraca ci tytuł, autora i content notatki
