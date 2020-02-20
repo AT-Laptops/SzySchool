@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -7,8 +7,19 @@ import PublicLayout from './components/layouts/PublicLayout';
 import PrivateLayout from './components/layouts/PrivateLayout';
 import CalendarPage from './components/layouts/CalendarPage';
 import Login from './components/layouts/Login';
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
 
-function App() {
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

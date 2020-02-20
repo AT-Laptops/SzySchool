@@ -1,6 +1,8 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navigation = () => {
 
@@ -23,7 +25,9 @@ const Navigation = () => {
     return (
         <nav className='navbar'>
             <div onClick={() => setState('home')} className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
-            <Link to="/" className="navbar__element__link" ></Link>
+            <Link to="/" className="navbar__element__link" >
+                <FontAwesomeIcon icon={ faHome } />
+            </Link>
             </div>
             <div onClick={() => setState('calendar')} className={state === 'calendar' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/calendar" className="navbar__element__link" ></Link>

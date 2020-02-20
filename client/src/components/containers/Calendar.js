@@ -35,14 +35,14 @@ const Calendar = () => {
             }
     
             for (let i = 1; i <= daysInMonth; i++) {
-                calendarDays.push(<div className={ i === day && date.getMonth() === month.month ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
+                calendarDays.push(<div className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
             }
     
             return calendarDays;
         }
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
-    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date]);
+    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year]);
 
     // function updateDate() {
     //     setDate(new Date());
@@ -197,10 +197,12 @@ const Calendar = () => {
 
     return (
         <div className='calendar'>
-            <h2>{ year }</h2>
-            <h3> { month.monthName } </h3>
-            <button onClick={ (e) => { prevMonth(e) } }>Poprzedni</button>
-            <button onClick={ (e) => { nextMonth(e)} }>Następny</button>
+            <h2 className='calendar__year-header'>{ year }</h2>
+            <div className='calendar__month-wrapper'> 
+                <button className={ 'calendar__month-wrapper__button' } onClick={ (e) => { prevMonth(e) } }>Poprzedni</button>
+                <h3 className='calendar__month-wrapper-month-header'> { month.monthName } </h3>
+                <button className={ 'calendar__month-wrapper__button' } onClick={ (e) => { nextMonth(e)} }>Następny</button>
+            </div>
             <div className='calendar__month'>
                 { calendarHeader }
                 { calendar }
