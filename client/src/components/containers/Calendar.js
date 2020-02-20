@@ -25,6 +25,7 @@ const Calendar = () => {
         // }
         function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
             const calendarDays = [];
+            console.log(month.month);
     
             if (firstDay === 0)
                 firstDay = 7;
@@ -104,6 +105,7 @@ const Calendar = () => {
     function nextMonth(e) {
         e.preventDefault();
 
+        if (month.month !== 11) {
         setMonth({
             month: month.month + 1,
             monthName: getMonthName(month.month + 1),
@@ -111,11 +113,17 @@ const Calendar = () => {
             firstDay: getFirstDay(year, month.month + 1),
             daysInPrevMonth: getDaysInMonth(year, month.month),
         });
+
+        }
         
         if (month.month === 11) {
             setYear(year + 1);
             setMonth({
-                month: new Date(year, 0).getMonth() - 1,
+                month: new Date(year + 1, 0).getMonth(),
+                monthName: getMonthName(new Date(year + 1, 0).getMonth()),
+                daysInMonth: getDaysInMonth(year + 1, new Date(year + 1, 0).getMonth()),
+                firstDay: getFirstDay(year + 1, new Date(year + 1, 0).getMonth()),
+                daysInPrevMonth: getDaysInMonth(year, new Date(year, 11).getMonth()),
             });
         }
     }
@@ -134,7 +142,11 @@ const Calendar = () => {
         if (month.month === 0) {
             setYear(year - 1);
             setMonth({
-                month: new Date(year, 11).getMonth() + 1,
+                month: new Date(year - 1, 11).getMonth(),
+                monthName: getMonthName(new Date(year - 1, 11).getMonth()),
+                daysInMonth: getDaysInMonth(year - 1, new Date(year - 1, 11).getMonth()),
+                firstDay: getFirstDay(year - 1, new Date(year - 1, 11).getMonth()),
+                daysInPrevMonth: getDaysInMonth(year - 1, new Date(year - 1, 10).getMonth()),
             });
         }
     }
