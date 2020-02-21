@@ -35,7 +35,7 @@ const Calendar = () => {
             }
     
             for (let i = 1; i <= daysInMonth; i++) {
-                calendarDays.push(<div className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 'calendar__month__day calendar__month__day--active' : 'calendar__month__day' } key={i}><span className={ 'calendar__month__day__text' }>{ i }</span></div>)
+                calendarDays.push(<div className={ 'calendar__month__day' } key={i}><span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 'calendar__month__day__text calendar__month__day__text--active' : 'calendar__month__day__text' }>{ i }</span></div>)
             }
     
             return calendarDays;
