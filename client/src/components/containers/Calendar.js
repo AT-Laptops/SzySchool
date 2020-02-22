@@ -1,6 +1,7 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const Calendar = () => {
 
@@ -199,9 +200,9 @@ const Calendar = () => {
         <div className='calendar'>
             <h2 className='calendar__year-header'>{ year }</h2>
             <div className='calendar__month-wrapper'> 
-                <button className={ 'calendar__month-wrapper__button' } onClick={ (e) => { prevMonth(e) } }>Poprzedni</button>
+                <FaAngleLeft className={ 'calendar__month-wrapper__button' } onClick={ (e) => { prevMonth(e) } } />
                 <h3 className='calendar__month-wrapper-month-header'> { month.monthName } </h3>
-                <button className={ 'calendar__month-wrapper__button' } onClick={ (e) => { nextMonth(e)} }>Następny</button>
+                <FaAngleRight className={ 'calendar__month-wrapper__button' } onClick={ (e) => { nextMonth(e)} } />
             </div>
             <div className='calendar__month'>
                 { calendarHeader }
