@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const Notes = () => {
-    return(
-        <section>
 
+    return (
+        <section className='notes'>
+            <div className='notes__link-wrapper'>
+            </div>
+            <div className='notes__link-wrapper'>
+            </div>
         </section>
     )
 }

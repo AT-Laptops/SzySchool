@@ -178,4 +178,10 @@ body {
         max-width: 500px;
         flex-grow: 1;
     }
+
+    .home {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
 }
