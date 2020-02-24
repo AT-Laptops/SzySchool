@@ -77,6 +77,12 @@ body {
     font-size: 1em;
 }
 
+.calendar__month-wrapper-month-header {
+    display: block;
+    text-align: center;
+    width: 100px;
+}
+
 .calendar__month {
     display: grid;
     grid-template-columns: repeat(7, 1fr);

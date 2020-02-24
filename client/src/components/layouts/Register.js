@@ -33,7 +33,7 @@ const validate = form => {
     return null;
 }
 
-const Register = ({register, isAuthenticate}) => {
+const Register = ({register, isAuthenticated}) => {
     const [error, setError] = useState(null);
     const { form, handleChange } = useInput({
         email: '',
