@@ -3,7 +3,7 @@ import React from 'react';
 
 const Organizer = () => {
     return (
-        <aside className='organizer'>
+        <aside className='organizer organizer-hidden'>
 
         </aside>
     );
