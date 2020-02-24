@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { register } from './../../actions/register';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import useInput from '../containers/useInput';
 
 const validate = form => {
     // eslint-disable-next-line no-use-before-define
@@ -34,20 +35,11 @@ const validate = form => {
 
 const Register = ({register, isAuthenticate}) => {
     const [error, setError] = useState(null);
-    const [form, setForm] = useState({
+    const { form, handleChange } = useInput({
         email: '',
         password: '',
         passwordRep: '',
     });
-
-    const { email, password, passwordRep } = form;
-
-    const updateField = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,7 +48,7 @@ const Register = ({register, isAuthenticate}) => {
             setError(errorMsg);
             return;
         }
-        register(email, password);
+        register(form.email, form.password);
     }
 
     return (
@@ -64,15 +56,15 @@ const Register = ({register, isAuthenticate}) => {
             <p className={ 'form__error' }>{ error }</p>
             <div className={ 'form__wrapper'}>
                 <label className={ 'form__wrapper__label' } htmlFor="email">Email</label>
-                <input type="email" className={ 'form__wrapper_input' } name='email' value={ email } onChange={ updateField } />
+                <input type="email" className={ 'form__wrapper_input' } name='email' value={ form.email } onChange={ handleChange } />
             </div>
             <div className={ 'form__wrapper'}>
                 <label className={ 'form__wrapper__label' } htmlFor="password">Hasło</label>
-                <input type="password" className={ 'form__wrapper_input' } name='password' value={ password } onChange={ updateField } />
+                <input type="password" className={ 'form__wrapper_input' } name='password' value={ form.password } onChange={ handleChange } />
             </div>
             <div className={ 'form__wrapper'}>
                 <label className={ 'form__wrapper__label' } htmlFor="passwordRep">Powtórz Hasło</label>
-                <input type="password" className={ 'form__wrapper_input' } name='passwordRep' value={ passwordRep } onChange={ updateField } />
+                <input type="password" className={ 'form__wrapper_input' } name='passwordRep' value={ form.passwordRep } onChange={ handleChange } />
             </div>
             <input type="submit" className={ 'form__submit' } value='Zarejestruj' onClick={ handleSubmit } />
         </form>
