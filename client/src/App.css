@@ -108,6 +108,10 @@ body {
     color: grey;
 }
 
+.calendar__month__day-selected {
+    color: pink;
+}
+
 /* organizer */
 .organizer {
     position: fixed;

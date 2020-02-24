@@ -17,15 +17,34 @@ const Calendar = () => {
     });
     const [day, setDay] = useState(date.getDate());
     const [calendar, setCalendar] = useState(null);
-    const [selectedDay, setSelectedDay] = useState(day);
+    const [selectedDay, setSelectedDay] = useState(date);
 
     useEffect(() => {
-        // const interval = setInterval(() => updateDate(), 60000);
 
-        // return function cleanUp() {
-        //     clearInterval(interval);
-        // }
-        console.log(selectedDay);
+        console.log(selectedDay.getDate());
+
+        setInterval(showme, 1000);
+
+        function showme() {
+            if (date.getHours() === 24) {
+                updateDate();
+            }
+        }
+
+        function updateDate() {
+            setDate(new Date());
+            setYear(date.getFullYear());
+            setMonth({
+                month: date.getMonth(),
+                monthName: getMonthName(date.getMonth()),
+                firstDay: getFirstDay(year, date.getMonth()),
+                lastDay: getLastDay(year, date.getMonth()),
+                daysInMonth: getDaysInMonth(year, date.getMonth()),
+                daysInPrevMonth: getDaysInMonth(year, date.getMonth() - 1),
+            });
+            setDay(date.getDate());
+            console.log('dupa');
+        }
 
         function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
             const calendarDays = [];
@@ -34,11 +53,11 @@ const Calendar = () => {
                 firstDay = 7;
     
     
-            for (let i = firstDay - 1; i > 0; i--, daysInPrevMonth--) {
+            for (let i = firstDay - 1, j = daysInPrevMonth; i > 0; i--, daysInPrevMonth--, j--) {
                 calendarDays.unshift(
                     <div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i} 
                     onClick={ () => 
-                                setSelectedDay(new Date(year, month.month - 1, 1)) } >
+                                setSelectedDay(new Date(year, month.month - 1, j)) } >
                     <span className={ 'calendar__month__day__text' }>{ daysInPrevMonth }</span>
                     </div>
                 )
@@ -47,9 +66,17 @@ const Calendar = () => {
             for (let i = 1; i <= daysInMonth; i++) {
                 calendarDays.push(
                     <div className={ 'calendar__month__day' } key={i} 
-                        onClick={ () => 
-                                    setSelectedDay(new Date(year, month.month, i)) } >
-                        <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 'calendar__month__day__text calendar__month__day__text--active' : 'calendar__month__day__text' }>{ i }</span>
+                        onClick={ () => {
+                            setSelectedDay(new Date(year, month.month, i));
+                        }} >
+                        <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
+                            selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
+                            'calendar__month__day__text calendar__month__day__text--active calendar__month__day-selected' :
+                            'calendar__month__day__text calendar__month__day__text--active' :
+                            selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
+                            'calendar__month__day__text calendar__month__day-selected' :
+                            'calendar__month__day__text'
+                        }>{ i }</span>
                     </div>
                 )
             }
@@ -59,20 +86,6 @@ const Calendar = () => {
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
     }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay]);
-
-    // function updateDate() {
-    //     setDate(new Date());
-    //     setYear(date.getFullYear());
-    //     setMonth({
-    //         month: date.getMonth(),
-    //         monthName: getMonthName(date.getMonth()),
-    //         firstDay: getFirstDay(year, date.getMonth()),
-    //         lastDay: getLastDay(year, date.getMonth()),
-    //         daysInMonth: getDaysInMonth(year, date.getMonth() + 1),
-    //         daysInPrevMonth: getDaysInMonth(year, date.getMonth()),
-    //     });
-    //     setDay(date.getDate());
-    // }
 
     function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
