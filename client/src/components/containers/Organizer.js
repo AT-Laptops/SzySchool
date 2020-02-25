@@ -1,21 +1,29 @@
 import './../../App.css';
-import React, { useState, useEffect } from 'react';
-import store from './../../store';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const Organizer = () => {
-    const [data, getData] = useState(null);
-
-    useEffect( () => {
-    store.subscribe(() => {
-        getData(store.getState().reminder.day);
-    })
-    })
+const Organizer = ({ day }) => {
+    useEffect(() => {
+        console.log(day);
+    });
 
     return (
         <aside className='organizer'>
-            <p>{ data }</p>
+            {/* <p>{ day }</p> */}
         </aside>
     );
 }
 
-export default Organizer;
+Organizer.propTypes = {
+    day: PropTypes.instanceOf(Date),
+};
+
+const mapStateToProps = state => ({
+    day: state.reminder.day
+});
+
+export default connect(
+    mapStateToProps,
+    { }
+)(Organizer);
