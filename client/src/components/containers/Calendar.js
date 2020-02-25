@@ -70,7 +70,7 @@ const Calendar = ({reminder, isLoaded}) => {
                     <div className={ 'calendar__month__day' } key={i} 
                         onClick={ () => {
                             setSelectedDay(new Date(year, month.month, i));
-                            // reminder(selectedDay);
+                            reminder(selectedDay);
                         }} >
                         <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
                             selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
@@ -243,16 +243,16 @@ const Calendar = ({reminder, isLoaded}) => {
     )
 }
 
-// Calendar.propTypes = {
-//     reminder: PropTypes.func.isRequired,
-//     isLoaded: PropTypes.bool
-// };
+Calendar.propTypes = {
+    reminder: PropTypes.func.isRequired,
+    isLoaded: PropTypes.bool
+};
 
-// const mapStateToProps = state => ({
-//     isLoaded: state.reminder.isLoaded,
-// });
+const mapStateToProps = state => ({
+    isLoaded: state.reminder.isLoaded,
+});
   
 export default connect(
-    // mapStateToProps,
-    // { reminder }
+    mapStateToProps,
+    { reminder }
 )(Calendar);
