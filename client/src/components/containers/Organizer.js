@@ -1,10 +1,19 @@
 import './../../App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import store from './../../store';
 
 const Organizer = () => {
-    return (
-        <aside className='organizer organizer-hidden'>
+    const [data, getData] = useState(null);
 
+    useEffect( () => {
+    store.subscribe(() => {
+        getData(store.getState().reminder.day);
+    })
+    })
+
+    return (
+        <aside className='organizer'>
+            <p>{ data }</p>
         </aside>
     );
 }

@@ -23,7 +23,7 @@ const Calendar = ({reminder, isLoaded}) => {
 
     useEffect(() => {
 
-        console.log(selectedDay.getDate());
+        console.log(selectedDay);
 
         setInterval(showme, 1000);
 
