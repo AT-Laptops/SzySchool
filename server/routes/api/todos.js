@@ -50,11 +50,11 @@ router.get('/:id',auth,async(req,res)=>{
 // @access  Private
 router.post('/:id',auth,async(req,res)=>{
     const id = req.params.id;
-    const {title,content} = req.body
+    const {title,content,date} = req.body
     try {
         todo = await Todo.findByIdAndUpdate(
             {_id: id},
-            {title,content},
+            {title,content,date},
             {new:true}
         )
         return res.json({"message":"complete"})
