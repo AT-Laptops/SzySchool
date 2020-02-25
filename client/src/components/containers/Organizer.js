@@ -1,29 +1,15 @@
 import './../../App.css';
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-const Organizer = ({ day }) => {
-    useEffect(() => {
-        console.log(day);
-    });
-
+const Organizer = () => {
+    const day = useSelector(state => state.reminder.day);
+    //nie wiem co się dzieje, głębsza rozkmina
     return (
         <aside className='organizer'>
-            {/* <p>{ day }</p> */}
+            {day}
         </aside>
     );
 }
 
-Organizer.propTypes = {
-    day: PropTypes.instanceOf(Date),
-};
-
-const mapStateToProps = state => ({
-    day: state.reminder.day
-});
-
-export default connect(
-    mapStateToProps,
-    { }
-)(Organizer);
+export default Organizer;
