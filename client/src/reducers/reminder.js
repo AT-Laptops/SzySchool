@@ -20,7 +20,7 @@ export default (state = initialDay, action) => {
         case GET_DAY:
             return {
                 ...state,
-                ...payload,
+                todos: payload,
                 isLoaded: true,
             }
         default:
