@@ -1,4 +1,5 @@
 import { GET_DAY } from './types';
+import axios from 'axios';
 
 export const reminder = (selectedDay) => async dispatch => {
 
@@ -9,7 +10,8 @@ export const reminder = (selectedDay) => async dispatch => {
     };
     try {
         let result;
-        result = await axios.post('api/notes', selectedDay, config);
+        result = await axios.get('api/todos/mine');
+        console.log(result);
         dispatch({ type: GET_DAY, payload: result.data });
     } catch (error) {
         console.log(error);

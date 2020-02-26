@@ -13,8 +13,8 @@ const Organizer = () => {
     // https://stackoverflow.com/questions/58850699/useselector-not-updating-when-store-has-changed-in-reducer-reactjs-redux
     return (
         <aside className='organizer'>
-            {/* {day} */}
-            {/* {todos} */}
+            {day}
+            {todos}
         </aside>
     );
 }
