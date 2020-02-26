@@ -2,8 +2,10 @@ import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { reminder } from './../../actions/reminder';
+import PropTypes from 'prop-types';
 
-const Calendar = () => {
+const Calendar = ({reminder}) => {
 
     const [date, setDate] = useState(new Date());
     const [year, setYear] = useState(date.getFullYear());
@@ -22,7 +24,6 @@ const Calendar = () => {
 
     useEffect(() => {
 
-        console.log(selectedDay);
 
         setInterval(showme, 1000);
 
@@ -44,7 +45,6 @@ const Calendar = () => {
                 daysInPrevMonth: getDaysInMonth(year, date.getMonth() - 1),
             });
             setDay(date.getDate());
-            console.log('dupa');
         }
 
         function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
@@ -69,7 +69,8 @@ const Calendar = () => {
                     <div className={ 'calendar__month__day' } key={i} 
                         onClick={ () => {
                             setSelectedDay(new Date(year, month.month, i));
-                            dispatch({ type: 'SET_DAY', value: selectedDay});
+                            dispatch({ type: 'SET_DAY', payload: new Date(year, month.month, i)});
+                            reminder();
                         }} >
                         <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
                             selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
@@ -87,7 +88,7 @@ const Calendar = () => {
         }
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
-    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch]);
+    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch, reminder]);
 
     function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
@@ -241,5 +242,16 @@ const Calendar = () => {
         </div>
     )
 }
+
+Calendar.propTypes = {
+    reminder: PropTypes.func.isRequired,
+};
   
-export default connect()(Calendar);
+const mapStateToProps = state => ({
+    
+});
+  
+export default connect(
+    mapStateToProps,
+    { reminder }
+)(Calendar);

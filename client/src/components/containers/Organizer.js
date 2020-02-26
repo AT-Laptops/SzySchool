@@ -7,18 +7,16 @@ import { connect } from 'react-redux';
 
 const Organizer = ({reminder}) => {
     const day = useSelector(state => state.reminder.day);
-    const dispatch = useDispatch();
-    const todos = useSelector(state => state.reminder.todos._id);
+    const todos = useSelector(state => state.reminder.todos);
     useEffect(() => {
-        reminder(day);
-        console.log(todos);
-    }, [dispatch, day]);
+        reminder();
+    }, [reminder]);
     //nie wiem co się dzieje, głębsza rozkmina
     // https://stackoverflow.com/questions/58850699/useselector-not-updating-when-store-has-changed-in-reducer-reactjs-redux
     return (
         <aside className='organizer'>
-            {day}
-            {todos}
+            <div key={ todos[0] ? todos[0]._id : ''}>{todos[0] ? todos[0].content : ''}</div>
+            <div>{ String(day) }</div>
         </aside>
     );
 }

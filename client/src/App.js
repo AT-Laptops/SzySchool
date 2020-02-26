@@ -20,8 +20,6 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-  console.log(store.getState());
-
   return (
     <Provider store={store}>
       <Router>
