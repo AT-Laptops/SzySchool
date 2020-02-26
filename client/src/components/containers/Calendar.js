@@ -1,11 +1,9 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { connect, useDispatch } from 'react-redux';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { reminder } from './../../actions/reminder';
 
-const Calendar = ({reminder, isLoaded}) => {
+const Calendar = () => {
 
     const [date, setDate] = useState(new Date());
     const [year, setYear] = useState(date.getFullYear());
@@ -20,6 +18,7 @@ const Calendar = ({reminder, isLoaded}) => {
     const [day, setDay] = useState(date.getDate());
     const [calendar, setCalendar] = useState(null);
     const [selectedDay, setSelectedDay] = useState(date);
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -70,7 +69,7 @@ const Calendar = ({reminder, isLoaded}) => {
                     <div className={ 'calendar__month__day' } key={i} 
                         onClick={ () => {
                             setSelectedDay(new Date(year, month.month, i));
-                            reminder(selectedDay);
+                            dispatch({ type: 'SET_DAY', value: selectedDay});
                         }} >
                         <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
                             selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
@@ -88,7 +87,7 @@ const Calendar = ({reminder, isLoaded}) => {
         }
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
-    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, reminder]);
+    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch]);
 
     function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
@@ -242,17 +241,5 @@ const Calendar = ({reminder, isLoaded}) => {
         </div>
     )
 }
-
-Calendar.propTypes = {
-    reminder: PropTypes.func.isRequired,
-    isLoaded: PropTypes.bool
-};
-
-const mapStateToProps = state => ({
-    isLoaded: state.reminder.isLoaded,
-});
   
-export default connect(
-    mapStateToProps,
-    { reminder }
-)(Calendar);
+export default connect()(Calendar);
