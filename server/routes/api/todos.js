@@ -32,12 +32,12 @@ router.get('/add',auth,async(req,res)=>{
 })
 
 // @route   POST api/todos
-// @desc    View a specific todo
+// @desc    View a specific todo by date
 // @access  Private
 router.get('/',auth,async(req,res)=>{
-    const { day } = req.body;
+    const { date } = req.body;
     try {
-        todo = new Todo({owner: req.user.id, date: day});
+        todo = new Todo({owner: req.user.id, date: date});
         await todo.save();
         res.json(todo._id);
     } catch (error) {
