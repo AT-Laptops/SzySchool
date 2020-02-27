@@ -12,7 +12,7 @@ export const reminder = (date) => async dispatch => {
 
     try {
         let result;
-        result = await axios.post('api/todos', config, date);
+        result = await axios.post('api/todos', body, config);
         dispatch({ type: GET_DAY, payload: result.data });
     } catch (error) {
         console.log(error);
