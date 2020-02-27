@@ -34,7 +34,7 @@ router.get('/add',auth,async(req,res)=>{
 // @route   POST api/todos
 // @desc    View a specific todo by date
 // @access  Private
-router.get('/',auth,async(req,res)=>{
+router.post('/',auth,async(req,res)=>{
     const { date } = req.body;
     try {
         todo = new Todo({owner: req.user.id, date: date});
