@@ -125,15 +125,32 @@ body {
     right: 0;
     height: 100vh;
     width: 70%;
-    opacity: .9;
+    padding: 20px;
+    box-sizing: border-box;
     background-color: var(--purple-lighter);
     z-index: 11;
     transition: 1s;
+}
+
+.ogarnizer__header {
     display: flex;
+    flex-direction: row;
+}
+
+.organizer__header__day-number {
+    opacity: .6;
+}
+
+.organizer__header__day-name {
+    margin-left: 7px;
 }
 
 .organizer-hidden {
     transform: translateX(100%);
+}
+
+.organizer__todos {
+    width: 100%;
 }
 
 /* form */

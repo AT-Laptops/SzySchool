@@ -12,7 +12,9 @@ const Organizer = ({reminder}) => {
         reminder();    
     }, [reminder]);
     const day = date => {
-        switch (date.getDay() + 1) {
+        switch (date.getDay()) {
+            case 0:
+                return 'Niedziela';
             case 1: 
                 return 'Poniedziałek';
             case 2: 
@@ -25,19 +27,36 @@ const Organizer = ({reminder}) => {
                 return 'Piątek';
             case 6:
                 return 'Sobota';
-            case 7:
-                return 'Niedziela';
             default:
                 return null;
         } 
     }
+
+    const generateHourList = (start, increment) => {
+        let hourList = [];
+        for (start; start <= 24; start += increment) {
+            hourList.push(<div key={ start }>{ start }</div>);
+        }
+        return hourList;
+    }
+
+    const todoList = todos.map((todo) =>
+        <div className='organizer__todos_todo' key={todo._id}>
+            {todo.content}
+        </div>
+    );
     
     return (
         <aside className='organizer'>
             {/* <div key={ todos[0] ? todos[0]._id : ''}>{todos[0] ? todos[0].content : ''}</div> */}
-            <h2 className='organizer__day-number'>{ date.getDate() }</h2>
-            <h2 className='organizer__day-name'>{ day(date) }</h2>
-            <div className='organizer__todos'></div>
+            <div className='ogarnizer__header'>
+                <h2 className='organizer__header__day-number'>{ date.getDate() }</h2>
+                <h2 className='organizer__header__day-name'>{ day(date) }</h2>
+            </div>
+            <div className='organizer__todos'>
+                { todoList }
+                { generateHourList(0, 2) }
+            </div>
         </aside>
     );
 }
