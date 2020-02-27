@@ -31,6 +31,21 @@ router.get('/add',auth,async(req,res)=>{
     }
 })
 
+// @route   POST api/todos
+// @desc    View a specific todo
+// @access  Private
+router.get('/',auth,async(req,res)=>{
+    const { day } = req.body;
+    try {
+        todo = new Todo({owner: req.user.id, date: day});
+        await todo.save();
+        res.json(todo._id);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+})
+
 // @route   GET api/todos/:id
 // @desc    View a specific todo
 // @access  Private
