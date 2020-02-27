@@ -70,7 +70,7 @@ const Calendar = ({reminder}) => {
                         onClick={ () => {
                             setSelectedDay(new Date(year, month.month, i));
                             dispatch({ type: 'SET_DAY', payload: new Date(year, month.month, i)});
-                            reminder();
+                            reminder(new Date(year, month.month, i));
                         }} >
                         <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
                             selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
