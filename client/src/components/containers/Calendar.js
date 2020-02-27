@@ -69,8 +69,8 @@ const Calendar = ({reminder}) => {
                     <div className={ 'calendar__month__day' } key={i} 
                         onClick={ () => {
                             setSelectedDay(new Date(year, month.month, i));
-                            dispatch({ type: 'SET_DAY', payload: new Date(year, month.month, i)});
-                            reminder(new Date(year, month.month, i));
+                            dispatch({ type: 'SET_DAY', payload: new Date(year, month.month, i, 20)});
+                            reminder(new Date(year, month.month, i, 20));
                         }} >
                         <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
                             selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
