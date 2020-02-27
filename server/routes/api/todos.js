@@ -41,8 +41,6 @@ router.post('/',auth,async(req,res)=>{
         date1 = date1.setHours(0,0,0,0)
         let date2 = new Date(date)
         date2 = date2.setHours(23,59,59,999)
-        console.log(date1)
-        console.log(date2)
         const todo = await Todo.find({owner: req.user.id,date:{"$gte": date1 , "$lt": date2}})
         res.json(todo);
     } catch (error) {
