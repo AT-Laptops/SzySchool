@@ -129,6 +129,7 @@ body {
     background-color: var(--purple-lighter);
     z-index: 11;
     transition: 1s;
+    display: flex;
 }
 
 .organizer-hidden {

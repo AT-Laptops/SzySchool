@@ -3,7 +3,7 @@ import {
 } from './../actions/types';
 
 const initialDay = {
-    day: new Date().getDate(),
+    date: new Date(),
     todos: [],
     isLoaded: false,
 };
@@ -14,7 +14,7 @@ export default (state = initialDay, action) => {
         case SET_DAY: 
             return {
                 ...state,
-                day: payload,
+                date: payload,
                 isLoaded: true,
             }
         case GET_DAY:
