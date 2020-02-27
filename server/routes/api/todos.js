@@ -37,9 +37,14 @@ router.get('/add',auth,async(req,res)=>{
 router.post('/',auth,async(req,res)=>{
     const { date } = req.body;
     try {
-        todo = new Todo({owner: req.user.id, date: date});
-        await todo.save();
-        res.json(todo._id);
+        let date1 = new Date(date)
+        date1 = date1.setHours(0,0,0,0)
+        let date2 = new Date(date)
+        date2 = date2.setHours(23,59,59,999)
+        console.log(date1)
+        console.log(date2)
+        const todo = await Todo.find({owner: req.user.id,date:{"$gte": date1 , "$lt": date2}})
+        res.json(todo);
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server Error');
@@ -65,13 +70,25 @@ router.get('/:id',auth,async(req,res)=>{
 // @access  Private
 router.post('/:id',auth,async(req,res)=>{
     const id = req.params.id;
-    const {title,content,date} = req.body
+    const {content} = req.body
+    let date;
+    if(req.body.date){
+        date = req.body.date
+    }   
     try {
-        todo = await Todo.findByIdAndUpdate(
-            {_id: id},
-            {title,content,date},
-            {new:true}
-        )
+        if(req.body.date) {
+            todo = await Todo.findByIdAndUpdate(
+                {_id: id},
+                {content,date},
+                {new:true}
+            )
+        }else {
+            todo = await Todo.findByIdAndUpdate(
+                {_id: id},
+                {content},
+                {new:true}
+            )
+        }
         return res.json({"message":"complete"})
     } catch (error) {
         console.error(error.message);
