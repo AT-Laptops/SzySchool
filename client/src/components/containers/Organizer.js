@@ -9,8 +9,8 @@ const Organizer = ({reminder}) => {
     const date = useSelector(state => state.reminder.date);
     const todos = useSelector(state => state.reminder.todos);
     useEffect(() => {
-        reminder();    
-    }, [reminder]);
+        reminder(date);    
+    }, [reminder, date]);
     const day = date => {
         switch (date.getDay()) {
             case 0:
