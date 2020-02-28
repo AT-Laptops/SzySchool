@@ -1,11 +1,13 @@
 import {
-    SET_DAY, GET_DAY
+    SET_DAY, 
+    GET_DAY,
+    GET_TODOS,
 } from './../actions/types';
 
 const initialDay = {
     date: new Date(),
     todos: [],
-    isLoaded: false,
+    events: [],
 };
 
 export default (state = initialDay, action) => {
@@ -15,13 +17,16 @@ export default (state = initialDay, action) => {
             return {
                 ...state,
                 date: payload,
-                isLoaded: true,
             }
         case GET_DAY:
             return {
                 ...state,
                 todos: payload,
-                isLoaded: true,
+            }
+        case GET_TODOS:
+            return {
+                ...state,
+                todos: payload,
             }
         default:
             return state;

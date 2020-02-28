@@ -2,10 +2,10 @@ import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { reminder } from './../../actions/reminder';
+import { todos } from './../../actions/todos';
 import PropTypes from 'prop-types';
 
-const Calendar = ({reminder}) => {
+const Calendar = ({todos}) => {
 
     const [date, setDate] = useState(new Date());
     const [year, setYear] = useState(date.getFullYear());
@@ -70,7 +70,7 @@ const Calendar = ({reminder}) => {
                         onClick={ () => {
                             setSelectedDay(new Date(year, month.month, i));
                             dispatch({ type: 'SET_DAY', payload: new Date(year, month.month, i, 20)});
-                            reminder(new Date(year, month.month, i, 20));
+                            todos(new Date(year, month.month, i, 20));
                         }} >
                         <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
                             selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
@@ -88,7 +88,7 @@ const Calendar = ({reminder}) => {
         }
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
-    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch, reminder]);
+    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch, todos]);
 
     function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
@@ -244,7 +244,7 @@ const Calendar = ({reminder}) => {
 }
 
 Calendar.propTypes = {
-    reminder: PropTypes.func.isRequired,
+    todos: PropTypes.func.isRequired,
 };
   
 const mapStateToProps = state => ({
@@ -253,5 +253,5 @@ const mapStateToProps = state => ({
   
 export default connect(
     mapStateToProps,
-    { reminder }
+    { todos }
 )(Calendar);

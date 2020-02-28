@@ -1,7 +1,7 @@
 import { GET_DAY } from './types';
 import axios from 'axios';
 
-export const reminder = (date) => async dispatch => {
+export const todos = (date) => async dispatch => {
 
     const config = {
         headers: {

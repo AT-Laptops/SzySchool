@@ -1,15 +1,15 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { reminder } from './../../actions/reminder';
+import { todos } from './../../actions/todos';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Organizer = ({reminder}) => {
+const Organizer = ({todos}) => {
     const date = useSelector(state => state.reminder.date);
-    const todos = useSelector(state => state.reminder.todos);
+    const allTodos = useSelector(state => state.reminder.todos);
     useEffect(() => {
-        reminder(date);    
+        todos(date);    
     }, []);
     const day = date => {
         switch (date.getDay()) {
@@ -42,7 +42,7 @@ const Organizer = ({reminder}) => {
         return hourList;
     }
 
-    const todoList = todos.map((todo) =>
+    const todoList = allTodos.map((todo) =>
         <div className='organizer__todos_todo' key={todo._id}>
             {todo.content}
         </div>
@@ -64,7 +64,7 @@ const Organizer = ({reminder}) => {
 }
 
 Organizer.propTypes = {
-    reminder: PropTypes.func.isRequired,
+    todos: PropTypes.func.isRequired,
 };
   
 const mapStateToProps = state => ({
@@ -73,5 +73,5 @@ const mapStateToProps = state => ({
   
 export default connect(
     mapStateToProps,
-    { reminder }
+    { todos }
 )(Organizer);
