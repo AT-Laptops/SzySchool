@@ -32,6 +32,8 @@ const Organizer = ({reminder}) => {
         } 
     }
 
+    //dodawaj +1 do godziny bo jest cofnięta to tyłu
+
     const generateHourList = (start, increment) => {
         let hourList = [];
         for (start; start <= 24; start += increment) {

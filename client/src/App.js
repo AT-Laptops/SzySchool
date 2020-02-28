@@ -9,6 +9,7 @@ import CalendarPage from './components/layouts/CalendarPage';
 import Login from './components/layouts/Login';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
+import TodosPage from './components/layouts/TodosPage';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -27,6 +28,7 @@ const App = () => {
           <Route exact path="/calendar" component={ CalendarPage }></Route>
           <Route exact path='/register' component={ PrivateLayout }></Route>
           <Route exact path="/login" component={ Login }></Route>
+          <Route exact path='/todos' component={ TodosPage }></Route>  
           <Route exact path="/" component={ PublicLayout }></Route>
         </Switch>
       </Router>

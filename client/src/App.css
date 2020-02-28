@@ -223,4 +223,10 @@ body {
         flex-direction: row;
         height: 100vh;
     }
+
+    .todos-page {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
 }

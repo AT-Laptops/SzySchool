@@ -1,7 +1,7 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaCalendarAlt, FaHome } from 'react-icons/fa';
+import { FaCalendarAlt, FaHome, FaClipboardList } from 'react-icons/fa';
 
 
 const Navigation = () => {
@@ -15,6 +15,9 @@ const Navigation = () => {
                 break;
             case '/calendar' : 
                 setState('calendar'); 
+                break;
+            case '/todos' :
+                setState('todos');
                 break;
             default : 
                 setState('home'); 
@@ -34,8 +37,10 @@ const Navigation = () => {
                     <FaCalendarAlt className='navbar__element__link__icon' />
                 </Link>
             </div>
-            <div onClick={() => setState('register')} className={state === 'register' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
-                <Link to="/register" className="navbar__element__link" ></Link>
+            <div onClick={() => setState('todos')} className={state === 'todos' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
+                <Link to="/todos" className="navbar__element__link" >
+                    <FaClipboardList className='navbar__element__link__icon' />
+                </Link>
             </div>
         </nav>
     );
