@@ -46,7 +46,7 @@ const Login = ({ login, isAuthenticated }) => {
                 <label className={ 'form__wrapper__label' } htmlFor="password">Hasło</label>
                 <input type="password" className={ 'form__wrapper_input' } name='password' value={ form.password } onChange={ handleChange } />
             </div>
-            <input type="submit" className={ 'form__submit' } value='Zarejestruj' onClick={ handleSubmit } />
+            <input type="submit" className={ 'form__submit' } value='Zaloguj' onClick={ handleSubmit } />
         </form>
     )
 }

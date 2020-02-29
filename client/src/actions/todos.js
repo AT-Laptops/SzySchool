@@ -9,7 +9,6 @@ export const todos = (date) => async dispatch => {
         }
     };
     const body = JSON.stringify({date});
-    console.log(date);
 
     try {
         let result;

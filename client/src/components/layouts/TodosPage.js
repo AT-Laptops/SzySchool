@@ -7,8 +7,8 @@ const TodosPage = () => {
 
     return (
         <section className='todos-page'>
-            <Todos></Todos>
             <Sidebar></Sidebar>
+            <Todos></Todos>
         </section>
     )
 }

@@ -1,6 +1,6 @@
 import './../../App.css';
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { todos } from './../../actions/todos';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ const Organizer = ({todos}) => {
     useEffect(() => {
         todos(date);    
     }, []);
+    
     const day = date => {
         switch (date.getDay()) {
             case 0:
@@ -50,7 +51,6 @@ const Organizer = ({todos}) => {
     
     return (
         <aside className='organizer'>
-            {/* <div key={ todos[0] ? todos[0]._id : ''}>{todos[0] ? todos[0].content : ''}</div> */}
             <div className='ogarnizer__header'>
                 <h2 className='organizer__header__day-number'>{ date.getDate() }</h2>
                 <h2 className='organizer__header__day-name'>{ day(date) }</h2>
