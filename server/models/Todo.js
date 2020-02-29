@@ -6,7 +6,7 @@ const TodoSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        default: new Date
+        default: null
     },
     type: {
         type: String,

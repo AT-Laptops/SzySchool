@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Todo = require('../../models/Todo');
 
 // @route   GET api/todos/mine
-// @desc    Get mine todos
+// @desc    Get mine todos (ALL)
 // @access  Private
 router.get('/mine',auth,async(req,res)=>{
     try {
@@ -17,24 +18,55 @@ router.get('/mine',auth,async(req,res)=>{
     }
 })
 
-// @route   GET api/todos/add
-// @desc    Add a todo
+// @route   GET api/todos/withoutdate
+// @desc    get all mine todos without any date
 // @access  Private
-router.get('/add',auth,async(req,res)=>{
+router.get('/withoutdate',auth,async(req,res)=>{
     try {
-        todo = new Todo({owner: req.user.id});
-        await todo.save();
-        res.json(todo._id);
+        const todo = await Todo.find({owner: req.user.id, date:null});
+        res.json(todo)
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server error')
     }
 })
+
+// @route   POST api/todos/add
+// @desc    Add a todo
+// @access  Private
+router.post('/add',
+    [
+        check('content','Content is required').not().isEmpty(),
+    ],auth,async(req,res)=>{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            console.log(req.body)
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+        const {date,content} = req.body;
+        try {
+            todo = new Todo({owner: req.user.id,date,content});
+            await todo.save();
+            res.json(todo);
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
+    }
+)
 
 // @route   POST api/todos
 // @desc    View a specific todo by date
 // @access  Private
-router.post('/',auth,async(req,res)=>{
+router.post('/',[check('date','Date is required').not().isEmpty()],auth,async(req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()){
+        return res.status(400).json({
+            errors: errors.array()
+        });
+    }
     const { date } = req.body;
     try {
         let date1 = new Date(date)
@@ -68,22 +100,24 @@ router.get('/:id',auth,async(req,res)=>{
 // @access  Private
 router.post('/:id',auth,async(req,res)=>{
     const id = req.params.id;
-    const {content} = req.body
-    let date;
-    if(req.body.date){
-        date = req.body.date
-    }   
+    const {content,date} = req.body
     try {
-        if(req.body.date) {
+        if(req.body.date && req.body.content) {
             todo = await Todo.findByIdAndUpdate(
                 {_id: id},
                 {content,date},
                 {new:true}
             )
-        }else {
+        }else if(req.body.content) {
             todo = await Todo.findByIdAndUpdate(
                 {_id: id},
                 {content},
+                {new:true}
+            )
+        }else if(req.body.date) {
+            todo = await Todo.findByIdAndUpdate(
+                {_id: id},
+                {date},
                 {new:true}
             )
         }
@@ -93,11 +127,5 @@ router.post('/:id',auth,async(req,res)=>{
         res.status(500).send('Server Error');
     }
 })
-
-/*
-
-    dokładnie tak samo jak notatki
-
-*/
 
 module.exports = router;
