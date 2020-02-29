@@ -1,7 +1,7 @@
 import { TODO_STATE } from './types';
 import axios from 'axios';
 
-export const setTodo = (todo) = async dispatch => {
+export const setTodo = (todo) => async dispatch => {
 
     const config = {
         headers: {
@@ -12,7 +12,7 @@ export const setTodo = (todo) = async dispatch => {
 
     try {
         let result;
-        result = await axios.post(`api/todos/${todo.todo_id}/changedone`, body, config);
+        result = await axios.post(`api/todos/${todo._id}/changedone`, body, config);
         dispatch({ type: TODO_STATE, payload: result.data });
     } catch (error) {   
         console.log(error);
