@@ -7,4 +7,4 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const SET_DAY = 'SET_DAY';
 export const GET_DAY = 'GET_DAY';
 export const GET_TODOS = 'GET_TODOS';
-export const SET_DONE = 'SET_DONE';
+export const TODO_STATE = 'TODO_STATE';

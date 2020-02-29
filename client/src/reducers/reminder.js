@@ -2,6 +2,7 @@ import {
     SET_DAY, 
     GET_DAY,
     GET_TODOS,
+    TODO_STATE,
 } from './../actions/types';
 
 const initialDay = {
@@ -19,6 +20,7 @@ export default (state = initialDay, action) => {
                 date: payload,
             }
         case GET_DAY:
+        case TODO_STATE:
             return {
                 ...state,
                 todos: payload,
