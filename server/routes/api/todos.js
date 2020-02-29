@@ -140,5 +140,34 @@ router.post('/:id',
         }
     }
 )
+// @route   POST api/todos/:id/changedone
+// @desc    set specific todo as done
+// @access  Private
+router.post('/:id/changedone',
+    [
+        check('isDone','isDone is required').not().isEmpty(),
+    ]
+    ,auth,async(req,res)=>{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+        const id = req.params.id;
+        const {isDone} = req.body
+        try {
+            todo = await Todo.findByIdAndUpdate(
+                {_id: id},
+                {isDone},
+                {new:true}
+            )
+            return res.json({"message":"complete"})
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
+    }
+)
 
 module.exports = router;
