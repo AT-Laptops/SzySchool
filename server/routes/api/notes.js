@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const { check, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Note = require('../../models/Note');
@@ -49,21 +49,34 @@ router.get('/:id',auth,async(req,res)=>{
 // @route   POST api/notes/:id
 // @desc    make changes to specific note
 // @access  Private
-router.post('/:id',auth,async(req,res)=>{
-    const id = req.params.id;
-    const {title,content} = req.body
-    try {
-        note = await Note.findByIdAndUpdate(
-            {_id: id},
-            {title,content},
-            {new:true}
-        )
-        return res.json({"message":"complete"})
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
+router.post('/:id',
+    [
+        check('title',"Title is reqired, even if it is same as earlier").not().isEmpty(),
+        check('content',"Content is reqired, even if it is same as earlier").not().isEmpty()
+    ],
+    auth,
+    async(req,res)=>{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+        const id = req.params.id;
+        const {title,content} = req.body
+        try {
+            note = await Note.findByIdAndUpdate(
+                {_id: id},
+                {title,content},
+                {new:true}
+            )
+            return res.json({"message":"complete"})
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
     }
-})
+)
 
 /*
     GET api/notes/mine  -> zwróci ci wszystkie notatki zalogowanego użytkownika, każda notatka ma id, po kliknieciu na konkretna notatke nalezy przekierowac na GET api/notes/:id
