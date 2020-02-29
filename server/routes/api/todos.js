@@ -98,34 +98,47 @@ router.get('/:id',auth,async(req,res)=>{
 // @route   POST api/todos/:id
 // @desc    make changes to specific todo
 // @access  Private
-router.post('/:id',auth,async(req,res)=>{
-    const id = req.params.id;
-    const {content,date} = req.body
-    try {
-        if(req.body.date && req.body.content) {
-            todo = await Todo.findByIdAndUpdate(
-                {_id: id},
-                {content,date},
-                {new:true}
-            )
-        }else if(req.body.content) {
-            todo = await Todo.findByIdAndUpdate(
-                {_id: id},
-                {content},
-                {new:true}
-            )
-        }else if(req.body.date) {
-            todo = await Todo.findByIdAndUpdate(
-                {_id: id},
-                {date},
-                {new:true}
-            )
+router.post('/:id',
+    [
+        check('content','Content is required').not().isEmpty(),
+        check('date','Date is required').not().isEmpty(),
+        check('isDone','isDone is required').not().isEmpty(),
+    ]
+    ,auth,async(req,res)=>{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            return res.status(400).json({
+                errors: errors.array()
+            });
         }
-        return res.json({"message":"complete"})
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server Error');
+        const id = req.params.id;
+        const {content,date,isDone} = req.body
+        try {
+            // if(req.body.date && req.body.content) {
+                todo = await Todo.findByIdAndUpdate(
+                    {_id: id},
+                    {content,date,isDone},
+                    {new:true}
+                )
+            // }else if(req.body.content) {
+            //     todo = await Todo.findByIdAndUpdate(
+            //         {_id: id},
+            //         {content},
+            //         {new:true}
+            //     )
+            // }else if(req.body.date) {
+            //     todo = await Todo.findByIdAndUpdate(
+            //         {_id: id},
+            //         {date},
+            //         {new:true}
+            //     )
+            // }
+            return res.json({"message":"complete"})
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
     }
-})
+)
 
 module.exports = router;
