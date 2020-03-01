@@ -191,14 +191,13 @@ body {
     background-color: white;
 }
 
-.todos-page {
-    height: 100vh;
-}
-
 .todos {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
+}
+
+.todos__undone {
     width: 100%;
 }
 
@@ -207,18 +206,28 @@ body {
     text-align: center;
 }
 
+.todos__undone__wrapper {
+    margin-bottom: 6px;
+}
+
 .todos__undone__wrapper__todo {
     display: inline-block;
     font-size: 1.4em;
 }
 
-.todos__undone__wrapper__todo--done {
+.todos__undone__wrapper__button--done {
     background-color: green;
 }
 
 .todos__undone__wrapper__button {
-    font-size: 1.4em;
     border: 0;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-right: 4px;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -257,5 +266,6 @@ body {
     .todos-page {
         display: flex;
         flex-direction: row;
+        height: 100vh;
     }
 }
