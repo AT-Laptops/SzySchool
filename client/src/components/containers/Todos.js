@@ -2,32 +2,26 @@ import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
 import { setTodo } from './../../actions/setTodo';
+import { todos } from './../../actions/todos';
 import PropTypes from 'prop-types';
-import { MdRadioButtonUnchecked } from 'react-icons/md';
 
-const Todos = ({setTodo}) => {
+const Todos = ({setTodo, todos}) => {
     const date = useSelector(state => state.reminder.date)
-    const todos = useSelector(state => state.reminder.todos);
-    const [day, setDay] = useState(`${(date.getDate()).toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}r.`);
-    const [todosList, setTodosList] = useState();
+    const allTodos = useSelector(state => state.reminder.todos);
+    const day = useState(`${(date.getDate()).toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}r.`);
 
     useEffect(() => {
-
-        function todosArray() {
-            let generatedTodos = [];
-            generatedTodos = todos.map((todo) =>
-                <div className='todos__undone__wrapper'  key={ todo._id }>
-                <p className='todos__undone__wrapper__todo'>
-                    { todo.content }
-                </p>
-                <button onClick={ () => { setTodo(todo) } }   className='todos__undone__wrapper__button green' >Lorem</button>
-                </div>
-            );
-            return generatedTodos;
-        }
-    
-        setTodosList(todosArray);
+        todos(date);  
     }, []);
+
+    const todosList = allTodos.map((todo) => 
+        <div className='todos__undone__wrapper'  key={ todo._id }>
+        <p className='todos__undone__wrapper__todo'>
+            { todo.content }
+        </p>
+        <button onClick={ () => { setTodo(todo, date) } }   className='todos__undone__wrapper__button green' >Lorem</button>
+        </div>
+    );
 
 
     return (
@@ -43,6 +37,7 @@ const Todos = ({setTodo}) => {
 
 Todos.propTypes = {
     setTodo: PropTypes.func.isRequired,
+    todos: PropTypes.func.isRequired,
 };
   
 const mapStateToProps = state => ({
@@ -51,5 +46,5 @@ const mapStateToProps = state => ({
   
 export default connect(
     mapStateToProps,
-    { setTodo }
+    { setTodo, todos }
 )(Todos);

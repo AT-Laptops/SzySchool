@@ -2,7 +2,6 @@ import {
     SET_DAY, 
     GET_DAY,
     GET_TODOS,
-    TODO_STATE,
 } from './../actions/types';
 
 const initialDay = {
@@ -24,13 +23,13 @@ export default (state = initialDay, action) => {
                 ...state,
                 todos: payload,
             }
-        case TODO_STATE:
-            return {
-                ...state,
-                todos: state.todos.map(
-                    (todo) => todo._id === payload ? { ...todo, isDone: !todo.isDone } : todo
-                ),
-            }
+        // case TODO_STATE:
+        //     return {
+        //         ...state,
+        //         todos: state.todos.map(
+        //             (todo) => todo._id === payload ? { ...todo, isDone: !todo.isDone } : todo
+        //         ),
+        //     }
         case GET_TODOS:
             return {
                 ...state,

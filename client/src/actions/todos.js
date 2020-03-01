@@ -1,4 +1,4 @@
-import { GET_DAY } from './types';
+import { GET_TODOS } from './types';
 import axios from 'axios';
 
 export const todos = (date) => async dispatch => {
@@ -13,7 +13,7 @@ export const todos = (date) => async dispatch => {
     try {
         let result;
         result = await axios.post('api/todos', body, config);
-        dispatch({ type: GET_DAY, payload: result.data });
+        dispatch({ type: GET_TODOS, payload: result.data });
     } catch (error) {
         console.log(error);
     }
