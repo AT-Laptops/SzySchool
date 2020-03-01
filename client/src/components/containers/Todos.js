@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, connect } from 'react-redux';
 import { setTodo } from './../../actions/setTodo';
 import PropTypes from 'prop-types';
+import { MdRadioButtonUnchecked } from 'react-icons/md';
 
 const Todos = ({setTodo}) => {
     const date = useSelector(state => state.reminder.date)
@@ -13,12 +14,13 @@ const Todos = ({setTodo}) => {
     useEffect(() => {
 
         function todosArray() {
-            let generatedTodos = todos.map((todo) =>
+            let generatedTodos = [];
+            generatedTodos = todos.map((todo) =>
                 <div className='todos__undone__wrapper'  key={ todo._id }>
-                <button onClick={ () => { setTodo(todo) } }   className='todos__undone__wrapper__button' >Zmień</button>
                 <p className='todos__undone__wrapper__todo'>
                     { todo.content }
                 </p>
+                <button onClick={ () => { setTodo(todo) } }   className='todos__undone__wrapper__button green' >Lorem</button>
                 </div>
             );
             return generatedTodos;

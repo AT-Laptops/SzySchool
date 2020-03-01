@@ -198,12 +198,23 @@ body {
 .todos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding: 20px;
+    width: 100%;
 }
 
 .todos__header {
-    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.todos__undone__wrapper__todo {
+    display: inline-block;
+    font-size: 1.4em;
+}
+
+.todos__undone__wrapper__button {
+    font-size: 1.4em;
+    border: 0;
 }
 
 @media only screen and (min-width: 1200px) {

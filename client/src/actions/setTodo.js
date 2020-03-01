@@ -13,7 +13,7 @@ export const setTodo = (todo) => async dispatch => {
     try {
         let result;
         result = await axios.post(`api/todos/${todo._id}/changedone`, body, config);
-        dispatch({ type: TODO_STATE, payload: result.data });
+        dispatch({ type: TODO_STATE, payload: true });
     } catch (error) {   
         console.log(error);
     }
