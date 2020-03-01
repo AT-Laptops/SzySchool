@@ -16,10 +16,10 @@ const Todos = ({setTodo, todos}) => {
 
     const todosList = allTodos.map((todo) => 
         <div className='todos__undone__wrapper'  key={ todo._id }>
-        <p className='todos__undone__wrapper__todo'>
+        <p className={ todo.isDone ? 'todos__undone__wrapper__todo todos__undone__wrapper__todo--done' : 'todos__undone__wrapper__todo'  }>
             { todo.content }
         </p>
-        <button onClick={ () => { setTodo(todo, date) } }   className='todos__undone__wrapper__button green' >Lorem</button>
+        <button onClick={ () => { setTodo(todo, date) } }   className='todos__undone__wrapper__button' >Lorem</button>
         </div>
     );
 

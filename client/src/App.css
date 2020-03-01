@@ -212,6 +212,10 @@ body {
     font-size: 1.4em;
 }
 
+.todos__undone__wrapper__todo--done {
+    background-color: green;
+}
+
 .todos__undone__wrapper__button {
     font-size: 1.4em;
     border: 0;
