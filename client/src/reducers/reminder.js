@@ -27,10 +27,9 @@ export default (state = initialDay, action) => {
         case TODO_STATE:
             return {
                 ...state,
-                todos: {
-                    ...state.todos,
-                    isDone: true,
-                },
+                todos: state.todos.map(
+                    (todo) => todo._id === payload ? { ...todo, isDone: !todo.isDone } : todo
+                ),
             }
         case GET_TODOS:
             return {
