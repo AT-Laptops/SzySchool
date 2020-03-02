@@ -105,7 +105,11 @@ body {
 
 .calendar__month__day__text--active {
     background-color: #540D6E;
-    padding: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     color: white;
 }

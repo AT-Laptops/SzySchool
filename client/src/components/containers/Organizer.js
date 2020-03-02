@@ -50,7 +50,7 @@ const Organizer = ({todos}) => {
     );
     
     return (
-        <aside className='organizer'>
+        <aside className='organizer organizer-hidden'>
             <div className='ogarnizer__header'>
                 <h2 className='organizer__header__day-number'>{ date.getDate() }</h2>
                 <h2 className='organizer__header__day-name'>{ day(date) }</h2>
