@@ -197,8 +197,12 @@ body {
     padding: 20px;
 }
 
-.todos__undone {
+.todos__undone, .todos__done {
     width: 100%;
+}
+
+.todos__undone {
+    min-height: 200px;
 }
 
 .todos__header {
@@ -206,20 +210,20 @@ body {
     text-align: center;
 }
 
-.todos__undone__wrapper {
+.todos__wrapper {
     margin-bottom: 6px;
 }
 
-.todos__undone__wrapper__todo {
+.todos__wrapper__todo {
     display: inline-block;
     font-size: 1.4em;
 }
 
-.todos__undone__wrapper__button--done {
+.todos__wrapper__button--done {
     background-color: green;
 }
 
-.todos__undone__wrapper__button {
+.todos__wrapper__button {
     border: 0;
     display: inline-block;
     box-sizing: border-box;
@@ -228,6 +232,10 @@ body {
     border-radius: 50%;
     border: 1px solid black;
     margin-right: 4px;
+}
+
+.todos__undone__h3, .todos__done__h3 {
+    font-size: 1.5em;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -267,5 +275,31 @@ body {
         display: flex;
         flex-direction: row;
         height: 100vh;
+    }
+
+    .todos {
+        flex-grow: 1;
+        flex-direction: row;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .todos__undone, .todos__done {
+        flex-grow: 1;
+        flex-basis: 0;
+        padding: 10px;
+        height: 90%;
+    }
+
+    .todos__undone {
+        border-right: 1px solid black;
+    }
+
+    .todos__done {
+        border-left: 1px solid black;
+    }
+
+    .todos__undone__h3, .todos__done__h3 {
+        text-align: center;
     }
 }

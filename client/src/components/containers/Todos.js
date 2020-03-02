@@ -17,9 +17,9 @@ const Todos = ({setTodo, todos}) => {
     const undoneTodos = allTodos.map((todo) => {
         if (todo.isDone) {
             return (
-                <div className='todos__undone__wrapper'  key={ todo._id }>
-                    <div onClick={ () => { setTodo(todo, date) } }   className={ !todo.isDone ? 'todos__undone__wrapper__button todos__undone__wrapper__button--done' : 'todos__undone__wrapper__button' } ></div>
-                    <p className='todos__undone__wrapper__todo' >
+                <div className='todos__wrapper'  key={ todo._id } onClick={ () => { setTodo(todo, date) } } >
+                    <div className={ !todo.isDone ? 'todos__wrapper__button todos__wrapper__button--done' : 'todos__wrapper__button' } ></div>
+                    <p className='todos__wrapper__todo' >
                         { todo.content }
                     </p>
                 </div>
@@ -31,9 +31,9 @@ const Todos = ({setTodo, todos}) => {
     const doneTodos = allTodos.map((todo) => {
         if (!todo.isDone) {
             return (
-                <div className='todos__undone__wrapper'  key={ todo._id }>
-                    <div onClick={ () => { setTodo(todo, date) } }   className={ !todo.isDone ? 'todos__undone__wrapper__button todos__undone__wrapper__button--done' : 'todos__undone__wrapper__button' } ></div>
-                    <p className='todos__undone__wrapper__todo'  >
+                <div className='todos__wrapper'  key={ todo._id } onClick={ () => { setTodo(todo, date) } } >
+                    <div className={ !todo.isDone ? 'todos__wrapper__button todos__wrapper__button--done' : 'todos__wrapper__button' } ></div>
+                    <p className='todos__wrapper__todo' >
                         { todo.content }
                     </p>
                 </div>
@@ -46,10 +46,11 @@ const Todos = ({setTodo, todos}) => {
         <section className='todos'>
             <h2 className='todos__header'>{day}</h2>
             <div className='todos__undone'>
+                <h3 className='todos__undone__h3'>Do zrobienia:</h3>
                 { undoneTodos }
             </div>
             <div className='todos__done'>
-                <h3>Ukończono:</h3>
+                <h3 className='todos__done__h3'>Ukończono:</h3>
                 { doneTodos }
             </div>
         </section>
