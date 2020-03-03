@@ -25,13 +25,7 @@ const Calendar = ({todos}) => {
     useEffect(() => {
 
 
-        setInterval(showme, 1000);
-
-        function showme() {
-            if (date.getHours() === 24) {
-                updateDate();
-            }
-        }
+        const interval = setInterval(() => { if (new Date().getHours === 24) updateDate() }, 1000);
 
         function updateDate() {
             setDate(new Date());
@@ -88,6 +82,11 @@ const Calendar = ({todos}) => {
         }
 
         setCalendar(generateCalendar(month.daysInMonth, month.daysInPrevMonth, month.firstDay));
+
+        return () => {
+            clearInterval(interval);
+        }
+
     }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch, todos]);
 
     function getFirstDay(year, month) {
