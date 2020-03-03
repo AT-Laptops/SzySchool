@@ -1,5 +1,5 @@
 import './../../App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { todos } from './../../actions/todos';
 import PropTypes from 'prop-types';
@@ -8,9 +8,12 @@ import { connect } from 'react-redux';
 const Organizer = ({todos}) => {
     const date = useSelector(state => state.reminder.date);
     const allTodos = useSelector(state => state.reminder.todos);
+
+    const getTodos = useCallback(() => { todos(date)}, [date, todos]);
+
     useEffect(() => {
-        todos(date);  
-    }, []);
+        getTodos();
+    }, [getTodos]);
     
     const day = date => {
         switch (date.getDay()) {
