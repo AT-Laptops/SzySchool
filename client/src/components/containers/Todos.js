@@ -10,8 +10,8 @@ const Todos = () => {
     return (
         <section className='todos'>
             <h2 className='todos__header'>{day}</h2>
-                <UndoneTodos></UndoneTodos>
-                <DoneTodos></DoneTodos>
+                <UndoneTodos date={ date }></UndoneTodos>
+                <DoneTodos date={ date }></DoneTodos>
         </section>
     )
 }

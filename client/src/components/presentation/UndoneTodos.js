@@ -2,9 +2,8 @@ import React from 'react';
 import { setTodo } from './../../actions/setTodo';
 import { useDispatch, useSelector } from 'react-redux';
 
-const UndoneTodos = () => {
+const UndoneTodos = ({ date } ) => {
     const dispatch = useDispatch();
-    const date = useSelector(state => state.reminder.date);
     const todos = useSelector(state => state.reminder.todos);
     const renderTodos = todos.map((todo) => {
         if (todo.isDone) {
