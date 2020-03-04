@@ -1,11 +1,9 @@
 import './../../App.css';
 import React, { useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { todos } from './../../actions/todos';
-import PropTypes from 'prop-types';
+import Day from './../presentation/Day';
 
-const Calendar = ({todos}) => {
+const Calendar = () => {
 
     const [date, setDate] = useState(new Date());
     const [year, setYear] = useState(date.getFullYear());
@@ -19,8 +17,6 @@ const Calendar = ({todos}) => {
     });
     const [day, setDay] = useState(date.getDate());
     const [calendar, setCalendar] = useState(null);
-    const [selectedDay, setSelectedDay] = useState(date);
-    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -49,9 +45,7 @@ const Calendar = ({todos}) => {
     
             for (let i = firstDay - 1, j = daysInPrevMonth; i > 0; i--, daysInPrevMonth--, j--) {
                 calendarDays.unshift(
-                    <div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i} 
-                    onClick={ () => 
-                                setSelectedDay(new Date(year, month.month - 1, j)) } >
+                    <div className={ 'calendar__month__day calendar__month__day--lastMonth' } key={'empty' + i} >
                     <span className={ 'calendar__month__day__text' }>{ daysInPrevMonth }</span>
                     </div>
                 )
@@ -59,21 +53,7 @@ const Calendar = ({todos}) => {
     
             for (let i = 1; i <= daysInMonth; i++) {
                 calendarDays.push(
-                    <div className={ 'calendar__month__day' } key={i} 
-                        onClick={ () => {
-                            setSelectedDay(new Date(year, month.month, i));
-                            dispatch({ type: 'SET_DAY', payload: new Date(year, month.month, i, 20)});
-                            todos(new Date(year, month.month, i, 20));
-                        }} >
-                        <span className={ date.getFullYear() === year && i === day && date.getMonth() === month.month ? 
-                            selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
-                            'calendar__month__day__text calendar__month__day__text--active calendar__month__day-selected' :
-                            'calendar__month__day__text calendar__month__day__text--active' :
-                            selectedDay.getDate() === i && selectedDay.getMonth() === month.month ?
-                            'calendar__month__day__text calendar__month__day-selected' :
-                            'calendar__month__day__text'
-                        }>{ i }</span>
-                    </div>
+                    <Day year={year} monthNumber={month.month} dayNumber={i}></Day>
                 )
             }
     
@@ -84,7 +64,7 @@ const Calendar = ({todos}) => {
 
         return () => { clearInterval(interval); }
 
-    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year, selectedDay, dispatch, todos]);
+    }, [month.month, month.daysInMonth, month.daysInPrevMonth, month.firstDay, day, date, year]);
 
     function getFirstDay(year, month) {
         return new Date(year, month, 1).getDay();
@@ -238,16 +218,5 @@ const Calendar = ({todos}) => {
         </div>
     )
 }
-
-Calendar.propTypes = {
-    todos: PropTypes.func.isRequired,
-};
   
-const mapStateToProps = state => ({
-    
-});
-  
-export default connect(
-    mapStateToProps,
-    { todos }
-)(Calendar);
+export default (Calendar);

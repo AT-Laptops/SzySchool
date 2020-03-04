@@ -16,5 +16,4 @@ export const setTodo = (todo, date) => async dispatch => {
     } catch (error) {   
         console.log(error);
     }
-
 }
