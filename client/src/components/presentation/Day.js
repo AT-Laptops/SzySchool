@@ -3,12 +3,12 @@ import React from 'react';
 import { todos } from './../../actions/todos';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Day = ({ year, monthNumber, dayNumber }) => {
+const Day = ({ year, monthNumber, dayNumber, name }) => {
     const date = new Date();
     const selectedDay = useSelector(state => state.reminder.date);
     const dispatch = useDispatch();
     return (
-        <div className='calendar__month__day' key={ dayNumber } 
+        <div className={'calendar__month__day' + ' ' + name }  key={ dayNumber } 
         onClick={ () => { 
             dispatch(todos(new Date(year, monthNumber, dayNumber, 20))); 
             dispatch({ type: 'SET_DAY', payload: new Date(year, monthNumber, dayNumber, 20)}); }}>

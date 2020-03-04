@@ -8,9 +8,9 @@ const Home = () => {
     const day = useState(`${(date.getDate()).toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}r.`);
     return (
         <div className='home'>
+            <Sidebar></Sidebar>
             <h3 home__header> { day } </h3>
             <UndoneTodos date={ date }></UndoneTodos>
-            <Sidebar></Sidebar>
         </div>
     )
 }
