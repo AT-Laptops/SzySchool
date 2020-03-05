@@ -8,7 +8,7 @@ const Day = ({ year, monthNumber, dayNumber, name }) => {
     const selectedDay = useSelector(state => state.reminder.date);
     const dispatch = useDispatch();
     return (
-        <div className={'calendar__month__day' + ' ' + name }  key={ dayNumber } 
+        <div className={`calendar__month__day ${name} `}  key={ dayNumber } 
         onClick={ () => { 
             dispatch(todos(new Date(year, monthNumber, dayNumber, 20))); 
             dispatch({ type: 'SET_DAY', payload: new Date(year, monthNumber, dayNumber, 20)}); }}>

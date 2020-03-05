@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import UndoneTodos from './../presentation/UndoneTodos';
-import { useSelector } from 'react-redux';
 
 const Home = () => {
     const date = new Date();
