@@ -45,13 +45,13 @@ const Calendar = () => {
     
             for (let i = firstDay - 1, j = daysInPrevMonth; i > 0; i--, daysInPrevMonth--, j--) {
                 calendarDays.unshift(
-                    <Day year={year} monthNumber={month.month} dayNumber={ daysInPrevMonth } name='calendar__month__day--lastMonth'></Day>
+                    <Day key={daysInPrevMonth} year={year} monthNumber={month.month} dayNumber={ daysInPrevMonth } name='calendar__month__day--lastMonth'></Day>
                 )
             }
     
             for (let i = 1; i <= daysInMonth; i++) {
                 calendarDays.push(
-                    <Day year={year} monthNumber={month.month} dayNumber={i}></Day>
+                    <Day key={`d${i}`} year={year} monthNumber={month.month} dayNumber={i}></Day>
                 )
             }
     

@@ -10,7 +10,6 @@ import Login from './components/layouts/Login';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 import TodosPage from './components/layouts/TodosPage';
-import AddTodo from './components/containers/AddTodo';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,7 +29,6 @@ const App = () => {
           <Route exact path='/register' component={ PrivateLayout }></Route>
           <Route exact path="/login" component={ Login }></Route>
           <Route exact path='/todos' component={ TodosPage }></Route>  
-          <Route exact path="/addtodo" component={ AddTodo }></Route>
           <Route exact path="/" component={ PublicLayout }></Route>
         </Switch>
       </Router>
