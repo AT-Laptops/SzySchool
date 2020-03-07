@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 const UndoneTodos = (props) => {
     const dispatch = useDispatch();
     const todos = useSelector(state => state.reminder.todos);
-    const renderTodos = todos.map((todo) => {
+    let doneTodos = [];
+    todos.map((todo) => {
         if (!todo.isDone) {
-            return (
+            doneTodos.push(
                 <div className='todos__wrapper'  key={ todo._id } onClick={ () => { dispatch(setTodo(todo, props.date)) } } >
                     <div className={ !todo.isDone ? 'todos__wrapper__button todos__wrapper__button--done' : 'todos__wrapper__button' } ></div>
                     <p className='todos__wrapper__todo' >
@@ -16,15 +17,16 @@ const UndoneTodos = (props) => {
                 </div>
             )
         } else {
-            return '';
+            doneTodos.push('');
         }
+        return doneTodos;
     });
 
 
     return (
         <div className='todos__done'>
             <h3 className='todos__done__h3'>Ukończono:</h3>
-            { renderTodos }
+            { doneTodos }
         </div>
     );
 }

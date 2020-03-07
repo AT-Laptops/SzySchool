@@ -6,7 +6,7 @@ import { addTodo } from './../../actions/addTodo';
 const AddTodo = () => {
     const day = useSelector(state => state.reminder.date);
     const dispatch = useDispatch();
-    const header = useState(`${(day.getDate()).toString().padStart(2, '0')}.${(day.getMonth() + 1).toString().padStart(2, '0')}.${day.getFullYear()}r.`);
+    const header = `${(day.getDate()).toString().padStart(2, '0')}.${(day.getMonth() + 1).toString().padStart(2, '0')}.${day.getFullYear()}r.`;
     const [, updateComponent] = useState();
     const {form, handleChange } = useInput({
         date: day,

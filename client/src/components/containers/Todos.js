@@ -1,5 +1,5 @@
 import './../../App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import UndoneTodos from './../presentation/UndoneTodos';
 import DoneTodos from './../presentation/DoneTodos';
@@ -14,10 +14,10 @@ const Todos = () => {
     return (
         <section className='todos'>
             <h2 className='todos__header'>{day}</h2>
-                {/* <UndoneTodos date={ date }></UndoneTodos>
-                <DoneTodos date={ date }></DoneTodos> */}
+                <UndoneTodos date={ date }></UndoneTodos>
+                <DoneTodos date={ date }></DoneTodos>
                 <AddBox text='Dodaj Todo'>
-                    {/* <AddTodo /> */}
+                    <AddTodo />
                 </AddBox>
                 <DisplayAddBoxButton> 
                 </DisplayAddBoxButton>

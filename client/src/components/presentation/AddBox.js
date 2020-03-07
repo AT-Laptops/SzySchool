@@ -3,7 +3,7 @@ import './../../App.css';
 
 const AddBox = (props) => {
     return (
-        <div className='addbox'>
+        <div className='addbox addbox--active'>
             <h2 className='addbox__header'>{ props.text }</h2>
             { props.children }
         </div>
