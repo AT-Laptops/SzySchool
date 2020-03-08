@@ -1,10 +1,10 @@
 import './../../App.css';
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import UndoneTodos from './../presentation/UndoneTodos';
 import DoneTodos from './../presentation/DoneTodos';
 import AddBox from './../presentation/AddBox';
-import AddTodo from './../containers/AddTodo';
+import AddTodo from './AddTodo';
 
 
 const Todos = () => {

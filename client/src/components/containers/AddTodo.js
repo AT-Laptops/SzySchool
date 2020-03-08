@@ -1,7 +1,7 @@
 import React, { useState, useCallback} from 'react';
-import useInput from './../containers/useInput'
+import useInput from './useInput'
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo } from './../../actions/addTodo';
+import { addTodo } from '../../actions/addTodo';
 
 const AddTodo = () => {
     const day = useSelector(state => state.reminder.date);
