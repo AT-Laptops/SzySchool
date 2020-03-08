@@ -1,4 +1,4 @@
 /client/node_modules/
-/client/src/utils/config.json
+/client/src/config.json
 /server/node_modules/
 /server/config/
