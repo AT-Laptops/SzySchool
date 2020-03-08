@@ -1,9 +1,8 @@
 import './../../App.css';
 import React, { useState } from 'react';
-import { login } from './../../actions/login';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useInput from '../containers/useInput';
+import { login } from './../../actions/login';
 
 const validate = (form) => {
     if(!form.email) {
@@ -17,12 +16,13 @@ const validate = (form) => {
     return null;
 }
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = () => {
     const [error, setError] = useState(null);
     const { form, handleChange } = useInput({
         email: '',
         password: '',
     });
+    const dispatch = useDispatch();
     
 
     const handleSubmit = (e) => {
@@ -32,7 +32,7 @@ const Login = ({ login, isAuthenticated }) => {
             setError(errorMsg);
             return;
         }
-        login(form.email, form.password);
+        dispatch(login(form.email, form.password));
     }
 
     return (
@@ -50,17 +50,5 @@ const Login = ({ login, isAuthenticated }) => {
         </form>
     )
 }
-
-Login.propTypes = {
-    login: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool
-};
   
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-});
-  
-export default connect(
-    mapStateToProps,
-    { login }
-)(Login);
+export default Login;
