@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import * as data from './../../config.json';
+
 
 const NotesEditor = () => {
+
     return (
-        <Editor
-            apiKey={ data.apiKey }
-        >
-            
-        </Editor>
-    )
+        <div>
+            <Editor 
+                initialValue='chuj'
+                
+            ></Editor>
+        </div>
+    )    
 }
 
 export default NotesEditor;

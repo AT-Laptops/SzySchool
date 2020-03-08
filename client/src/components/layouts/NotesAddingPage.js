@@ -3,9 +3,7 @@ import NotesEditor from './../containers/NotesEditor';
 
 const NotesAddingPage = () => {
     return (
-        <NotesEditor>
-
-        </NotesEditor>
+        <NotesEditor></NotesEditor>
     );
 }
 
