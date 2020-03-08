@@ -251,7 +251,7 @@ body {
     z-index: 10;
 }
 
-.addbox {
+.addbox__content {
     z-index: 6;
     position: fixed;
     width: 90%;
@@ -262,7 +262,7 @@ body {
     background-color: #F6F6F6;
 }
 
-.addbox--active {
+.addbox__content--active {
     transform: translateX(-50%) translateY(-50%)
 }
 

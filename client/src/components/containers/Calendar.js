@@ -35,7 +35,7 @@ const Calendar = () => {
             });
             setDay(date.getDate());
         }
-
+        
         function generateCalendar(daysInMonth, daysInPrevMonth, firstDay) {
             const calendarDays = [];
     
