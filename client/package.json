@@ -26,6 +26,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "requirejs": "^2.3.6",
+    "tinymce": "^5.2.0",
     "uuid": "^3.4.0"
   },
   "scripts": {
