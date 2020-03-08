@@ -8,8 +8,13 @@ const NotesEditor = () => {
         <div>
             <Editor 
                 initialValue='chuj'
-                
+                init={{
+                    mobile: {
+                        menubar: true
+                    }
+                }}
             ></Editor>
+            <button>TEST</button>
         </div>
     )    
 }
