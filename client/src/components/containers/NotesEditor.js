@@ -14,7 +14,7 @@ const NotesEditor = () => {
                     menubar: false,
                     statusbar: false,
                     height: '70vh',
-                    plugins: 'lists',
+                    plugins: 'lists table',
                     fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt 48pt 56pt',
                     style_formats: [
                         {
@@ -26,9 +26,9 @@ const NotesEditor = () => {
                                 { title: 'Nagłówek 4', block: 'h4' },
                                 { title: 'Normalny', block: 'span' },
                             ]
-                        }
+                        },
                     ],
-                    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | fontsizeselect",
+                    toolbar: "styleselect | fontsizeselect fontselect bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table",
                     mobile: {
                         menubar: true,
                     }
