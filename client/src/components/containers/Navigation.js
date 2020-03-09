@@ -10,7 +10,7 @@ const Navigation = () => {
 
     useEffect(() => {
         switch (window.location.pathname) {
-            case '/home' : 
+            case '/' : 
                 setState('home'); 
                 break;
             case '/calendar' : 
@@ -28,7 +28,7 @@ const Navigation = () => {
     return (
         <nav className='navbar'>
             <div onClick={() => setState('home')} className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
-            <Link to="/home" className="navbar__element__link" >
+            <Link to="/" className="navbar__element__link" >
                 <FaHome className='navbar__element__link__icon' />
             </Link>
             </div>

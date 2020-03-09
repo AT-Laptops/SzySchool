@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useInput from '../containers/useInput';
 import { login } from './../../actions/login';
+import { useHistory } from 'react-router-dom';
 
 const validate = (form) => {
     if(!form.email) {
@@ -23,6 +24,7 @@ const Login = () => {
         password: '',
     });
     const dispatch = useDispatch();
+    const history = useHistory();
     
 
     const handleSubmit = (e) => {
@@ -32,7 +34,7 @@ const Login = () => {
             setError(errorMsg);
             return;
         }
-        dispatch(login(form.email, form.password));
+        dispatch(login(form.email, form.password, history));
     }
 
     return (
