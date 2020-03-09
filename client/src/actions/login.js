@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import { LOGIN_SUCCESS, LOGIN_FAIL } from './types';
-import { EditorPropTypes } from '@tinymce/tinymce-react/lib/cjs/main/ts/components/EditorPropTypes';
 
 export const login = (email, password, history) => async dispatch => {
 
@@ -15,6 +13,7 @@ export const login = (email, password, history) => async dispatch => {
       try {
         let result;
         result = await axios.post('/api/auth', body, config);
+        console.log(result);
         dispatch({ type: LOGIN_SUCCESS, payload: result.data });
         history.push('/');
       } catch (error) {
@@ -22,3 +21,7 @@ export const login = (email, password, history) => async dispatch => {
         console.log(error);
       }
 }
+
+// to nie działa tak jak powinno bo w payloadzie mam tylko token, dopiero jak odświerzę strone to mi pobiera dane na podstawie tokena
+// więc albo coś z tym logowaniem co przepisywałem 
+// albo trzeba tutaj jeszcze zrobić jakiegoś disptacha
