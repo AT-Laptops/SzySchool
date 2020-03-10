@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { loadUser } from './auth';
 import { LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import { loadUser } from './auth';
 
 export const login = (email, password, history) => async dispatch => {
 
@@ -15,8 +15,8 @@ export const login = (email, password, history) => async dispatch => {
         let result;
         result = await axios.post('/api/auth', body, config);
         console.log(result);
-        dispatch({ type: LOGIN_SUCCESS, payload: result.data });
-        loadUser();
+        await dispatch({ type: LOGIN_SUCCESS, payload: result.data });
+        await dispatch(loadUser());
         history.push('/');
       } catch (error) {
         dispatch({ type: LOGIN_FAIL });
