@@ -21,11 +21,11 @@ export default (state = initialState, action) => {
         case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token);
             return {
-                ...state,
-                ...payload,
-                isAuthenticated: true,
-                loading: false
-              };
+              ...state,
+              ...payload,
+              isAuthenticated: true,
+              loading: false
+            };
         case USER_LOADED:
           return {
             ...state,
