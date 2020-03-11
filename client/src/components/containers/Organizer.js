@@ -1,19 +1,16 @@
 import './../../App.css';
-import React, { useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { todos } from './../../actions/todos';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-const Organizer = ({todos}) => {
+const Organizer = ({ state }) => {
     const date = useSelector(state => state.reminder.date);
     const allTodos = useSelector(state => state.reminder.todos);
-
-    const getTodos = useCallback(() => { todos(date)}, [date, todos]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getTodos();
-    }, [getTodos]);
+        dispatch(todos(date));
+    }, [date, dispatch]);
     
     const day = date => {
         switch (date.getDay()) {
@@ -53,7 +50,7 @@ const Organizer = ({todos}) => {
     );
     
     return (
-        <aside className='organizer organizer-hidden'>
+        <aside className={ state ? 'organizer' : 'organizer organizer--hide'}>
             <div className='ogarnizer__header'>
                 <h2 className='organizer__header__day-number'>{ date.getDate() }</h2>
                 <h2 className='organizer__header__day-name'>{ day(date) }</h2>
@@ -65,16 +62,5 @@ const Organizer = ({todos}) => {
         </aside>
     );
 }
-
-Organizer.propTypes = {
-    todos: PropTypes.func.isRequired,
-};
   
-const mapStateToProps = state => ({
-    
-});
-  
-export default connect(
-    mapStateToProps,
-    { todos }
-)(Organizer);
+export default Organizer;

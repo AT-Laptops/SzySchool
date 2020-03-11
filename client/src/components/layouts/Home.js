@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(todos(new Date()));
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className='home'>
