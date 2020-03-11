@@ -15,10 +15,10 @@ const Day = ({ year, monthNumber, dayNumber, name }) => {
             <span className={ 
                 date.getFullYear() === year && date.getDate() === dayNumber && date.getMonth() === monthNumber ? 
                 selectedDay.getDate() === dayNumber && selectedDay.getMonth() === monthNumber ?
-                'calendar__month__day__text calendar__month__day__text--active calendar__month__day-selected' :
+                'calendar__month__day__text calendar__month__day__text--active calendar__month__day--selected' :
                 'calendar__month__day__text calendar__month__day__text--active' :
                 selectedDay.getDate() === dayNumber && selectedDay.getMonth() === monthNumber ?
-                'calendar__month__day__text calendar__month__day-selected' :
+                'calendar__month__day__text calendar__month__day--selected' :
                 'calendar__month__day__text'
             }>
             { dayNumber }</span>

@@ -16,8 +16,10 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <h3 className='home__header'> { day } </h3>
-            <UndoneTodos date={ date }></UndoneTodos>
+            <div className='home__content'>
+                <h3 className='home__header'> { day } </h3>
+                <UndoneTodos date={ date }></UndoneTodos>
+            </div>
             <Sidebar></Sidebar>
         </div>
     )

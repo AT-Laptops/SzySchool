@@ -45,7 +45,7 @@ const Calendar = () => {
     
             for (let i = firstDay - 1, j = daysInPrevMonth; i > 0; i--, daysInPrevMonth--, j--) {
                 calendarDays.unshift(
-                    <Day key={daysInPrevMonth} year={year} monthNumber={month.month} dayNumber={ daysInPrevMonth } name='calendar__month__day--lastMonth'></Day>
+                    <Day key={daysInPrevMonth} year={year} monthNumber={month.month} dayNumber={ daysInPrevMonth } name='calendar__month__day--last-month'></Day>
                 )
             }
     
