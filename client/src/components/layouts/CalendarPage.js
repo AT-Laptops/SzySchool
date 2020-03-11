@@ -3,6 +3,8 @@ import Calendar from './../containers/Calendar';
 import Sidebar from './Sidebar';
 import Organizer from './../containers/Organizer';
 import { useEffect } from 'react';
+import AddEventPopup from '../containers/AddEventPopup'
+import { showAddEventPopup } from '../../actions/popups';
 
 const CalendarPage = () => {
     const [state, setState] = useState(false);
@@ -22,6 +24,7 @@ const CalendarPage = () => {
 
     return (
         <div className='calendarPage'>
+            <AddEventPopup />
             <div className='calendarPage__content'>
                 <Calendar></Calendar>
                 <Organizer state={state}></Organizer>
