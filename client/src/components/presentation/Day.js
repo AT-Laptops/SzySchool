@@ -23,13 +23,20 @@ const Day = ({ year, monthNumber, dayNumber, name }) => {
                 'calendar__month__day__text calendar__month__day--selected' :
                 'calendar__month__day__text'
             }>
-                <span className="calendar__month__day__text__plus"><ContextMenuTrigger id="day_context_menu" holdToDisplay={0}><FaPlus /></ContextMenuTrigger></span>
+                <span className="calendar__month__day__text__plus">
+                    <ContextMenuTrigger id="day_context_menu" holdToDisplay={0}>
+                        <FaPlus />
+                    </ContextMenuTrigger>
+                </span>
                 { dayNumber } 
             </span>
             <ContextMenu id="day_context_menu" >
                 {/* https://github.com/vkbansal/react-contextmenu */}
                 <MenuItem>
-                    Dupa
+                    Dodaj wydarzenie
+                </MenuItem>
+                <MenuItem>
+                    Dodaj zadanie
                 </MenuItem>
             </ContextMenu>
         </div>
