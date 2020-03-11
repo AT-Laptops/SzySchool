@@ -6,9 +6,11 @@ import './../../App.css';
 const TodosPage = () => {
 
     return (
-        <section className='todos-page'>
+        <section className='todosPage'>
+            <div className='todosPage__content'>
+                <Todos></Todos>
+            </div>
             <Sidebar></Sidebar>
-            <Todos></Todos>
         </section>
     )
 }
