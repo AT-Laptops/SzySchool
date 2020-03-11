@@ -152,3 +152,10 @@ body {
         }
     }
 }
+
+.todosPage {
+    @include default-flex;
+    &__content {
+        flex: 1;
+    }
+}
