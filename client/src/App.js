@@ -17,6 +17,12 @@ import Login from './components/layouts/Login';
 import Register from './components/layouts/Register';
 import Home from './components/layouts/Home';
 
+import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {LightTheme, BaseProvider, styled} from 'baseui';
+import {StatefulInput} from 'baseui/input';
+const engine = new Styletron();
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -28,6 +34,8 @@ const App = () => {
   }, []);
 
   return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
     <Provider store={store}>
       <Router>
         <Switch>
@@ -41,6 +49,8 @@ const App = () => {
         </Switch>
       </Router>
     </Provider>
+    </BaseProvider>
+    </StyletronProvider>
   );
 }
 
