@@ -1,6 +1,7 @@
 import './../../App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { todos } from './../../actions/todos';
+import { showAddTodoPopup, showAddEventPopup } from './../../actions/popups';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
@@ -24,18 +25,18 @@ const Day = ({ year, monthNumber, dayNumber, name }) => {
                 'calendar__month__day__text'
             }>
                 <span className="calendar__month__day__text__plus">
-                    <ContextMenuTrigger id="day_context_menu" holdToDisplay={0}>
+                    <ContextMenuTrigger id={`context_menu_${dayNumber}`} holdToDisplay={0}>
                         <FaPlus />
                     </ContextMenuTrigger>
                 </span>
                 { dayNumber } 
             </span>
-            <ContextMenu id="day_context_menu" >
+            <ContextMenu id={`context_menu_${dayNumber}`} >
                 {/* https://github.com/vkbansal/react-contextmenu */}
-                <MenuItem>
+                <MenuItem onClick={()=>{dispatch(showAddEventPopup(true))}}>
                     Dodaj wydarzenie
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={()=>{dispatch(showAddTodoPopup(true))}}>
                     Dodaj zadanie
                 </MenuItem>
             </ContextMenu>

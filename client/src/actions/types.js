@@ -8,3 +8,6 @@ export const SET_DAY = 'SET_DAY';
 export const GET_DAY = 'GET_DAY';
 export const GET_TODOS = 'GET_TODOS';
 export const TODO_STATE = 'TODO_STATE';
+
+export const SHOW_ADD_EVENT_POPUP = 'SHOW_ADD_EVENT_POPUP';
+export const SHOW_ADD_TODO_POPUP = 'SHOW_ADD_TODO_POPUP';
