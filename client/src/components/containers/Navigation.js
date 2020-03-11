@@ -6,7 +6,7 @@ import { FaCalendarAlt, FaHome, FaClipboardList, FaStickyNote } from 'react-icon
 
 const Navigation = () => {
 
-    const [state, setState] = useState('home');
+    const [state, setState] = useState();
 
     useEffect(() => {
         switch (window.location.pathname) {
@@ -30,7 +30,7 @@ const Navigation = () => {
 
     return (
         <nav className='navbar'>
-            <div onClick={() => setState('home')} className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
+            <div onClick={() => setState('home') } className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
             <Link to="/" className="navbar__element__link" >
                 <FaHome className='navbar__element__link__icon' />
             </Link>
