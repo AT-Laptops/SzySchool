@@ -2,6 +2,8 @@ $body-color: #F6F6F6;
 $main-purple: #540D6E;
 $lighter-purple: #D0AADD;
 $light-purple: #67297D;
+$light-green: #a2dab1;
+$green: #00a72c;
 $main-font: 'Lato';
 
 @mixin default-flex {
@@ -87,11 +89,34 @@ body {
             align-items: center;
             margin-bottom: 4px;
             height: 50px;
+            &__text{
+                position: relative;
+                padding: 10px;
+                &__plus {
+                    color: $light-green;
+                    display: none;
+                    position: absolute;
+                    top:-2px;
+                    right:-5px;
+                    transition: .2s;
+                }
+            }
             &__text--active {
                 background-color: $main-purple;
                 padding: 10px;
                 border-radius: 50%;
                 color: white;
+            }
+            :hover > &{
+                &__text {
+                    &__plus {
+                        color: $light-green;
+                        display: block;
+                    }
+                    &__plus:hover {
+                        color: $green;
+                    }
+                }
             }
         }
         &__day--last-month {

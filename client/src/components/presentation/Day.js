@@ -2,6 +2,8 @@ import './../../App.css';
 import React from 'react';
 import { todos } from './../../actions/todos';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaPlus } from 'react-icons/fa';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 const Day = ({ year, monthNumber, dayNumber, name }) => {
     const date = new Date();
@@ -21,7 +23,15 @@ const Day = ({ year, monthNumber, dayNumber, name }) => {
                 'calendar__month__day__text calendar__month__day--selected' :
                 'calendar__month__day__text'
             }>
-            { dayNumber }</span>
+                <span className="calendar__month__day__text__plus"><ContextMenuTrigger id="day_context_menu" holdToDisplay={0}><FaPlus /></ContextMenuTrigger></span>
+                { dayNumber } 
+            </span>
+            <ContextMenu id="day_context_menu" >
+                {/* https://github.com/vkbansal/react-contextmenu */}
+                <MenuItem>
+                    Dupa
+                </MenuItem>
+            </ContextMenu>
         </div>
     )
 }
