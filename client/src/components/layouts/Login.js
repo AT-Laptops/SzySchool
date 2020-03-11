@@ -1,9 +1,8 @@
-import './../../App.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useInput from '../containers/useInput';
 import { login } from './../../actions/login';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const validate = (form) => {
     if(!form.email) {
@@ -38,17 +37,18 @@ const Login = () => {
     }
 
     return (
-        <form className={ 'form' } onSubmit={ handleSubmit } >
-            <p className={ 'form__error' }>{ error }</p>
-            <div className={ 'form__wrapper'}>
-                <label className={ 'form__wrapper__label' } htmlFor="email">Email</label>
-                <input type="email" className={ 'form__wrapper_input' } name='email' value={ form.email } onChange={ handleChange } />
+        <form className='form' onSubmit={ handleSubmit } >
+            <p className='form__error'>{ error }</p>
+            <div className='form__wrapper'>
+                <label className='form__wrapper__label' htmlFor="email">Email</label>
+                <input type="email" className='form__wrapper_input' name='email' value={ form.email } onChange={ handleChange } />
             </div>
-            <div className={ 'form__wrapper'}>
-                <label className={ 'form__wrapper__label' } htmlFor="password">Hasło</label>
-                <input type="password" className={ 'form__wrapper_input' } name='password' value={ form.password } onChange={ handleChange } />
+            <div className='form__wrapper'>
+                <label className='form__wrapper__label' htmlFor="password">Hasło</label>
+                <input type="password" className='form__wrapper_input' name='password' value={ form.password } onChange={ handleChange } />
             </div>
-            <input type="submit" className={ 'form__submit' } value='Zaloguj' onClick={ handleSubmit } />
+            <input type="submit" className='form__submit' value='Zaloguj' onClick={ handleSubmit } />
+            <Link className='form__link' to='/register'>Nie masz konta? Stwórz</Link>
         </form>
     )
 }

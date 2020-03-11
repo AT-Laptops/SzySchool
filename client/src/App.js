@@ -13,6 +13,7 @@ import setAuthToken from './utils/setAuthToken';
 import TodosPage from './components/layouts/TodosPage';
 import NotesAddingPage from './components/layouts/NotesAddingPage';
 import Login from './components/layouts/Login';
+import Register from './components/layouts/Register';
 import Home from './components/layouts/Home';
 
 if (localStorage.token) {
@@ -30,6 +31,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path='/login' component={ Login }></Route>
+          <Route exact path='/register' component={ Register }></Route>
           <PrivateRoute component={ CalendarPage } path='/calendar'></PrivateRoute>
           <PrivateRoute component={ TodosPage } path='/todos'></PrivateRoute>
           <PrivateRoute component={ NotesAddingPage } path='/addnotes'></PrivateRoute>

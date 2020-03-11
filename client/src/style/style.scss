@@ -160,6 +160,36 @@ body {
     }
 }
 
+.form {
+    background-color: $main-purple;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        &__label {
+            margin: 7px 0px 2px 0px;
+        }
+    }
+    &__submit {
+        margin: 5px 0px 3px 0px;
+        padding: 4px;
+        border-radius: 5px;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+    }
+    &__link {
+        color: $lighter-purple;
+        text-decoration: none;
+    }
+}
+
 // react-contextmenu
 .react-contextmenu {
     background-color: #fff;
