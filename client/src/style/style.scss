@@ -1,7 +1,7 @@
 $body-color: #F6F6F6;
-$main-purple: #67297D;
-$light-purple: #D0AADD;
-$dark-purple: #67297D;
+$main-purple: #540D6E;
+$lighter-purple: #D0AADD;
+$light-purple: #67297D;
 $main-font: 'Lato';
 
 * {
@@ -16,15 +16,27 @@ body {
 }
 
 .navbar {
-    position: fixed;
-    z-index: 10;
-    bottom: 0;
     width: 100%;
-    height: 8%;
+    height: 9vh;
     background-color: $main-purple;
     display: flex;
     flex-direction: row;
     &__element {
         flex: 1 1 0px;
+        &__link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &__icon {
+                font-size: 2rem;
+                color: white;
+            }
+        }
+    }
+    &__element--active {
+        background-color: $light-purple;
     }
 }

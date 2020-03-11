@@ -16,9 +16,9 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <Sidebar></Sidebar>
             <h3 className='home__header'> { day } </h3>
             <UndoneTodos date={ date }></UndoneTodos>
+            <Sidebar></Sidebar>
         </div>
     )
 }
