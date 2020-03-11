@@ -207,6 +207,13 @@ body {
     }
 }
 
+.notesPage {
+    @include default-flex;
+    &__content {
+        flex: 1;
+    }
+}
+
 // react-contextmenu
 .react-contextmenu {
     background-color: #fff;

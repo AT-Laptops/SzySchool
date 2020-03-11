@@ -9,6 +9,7 @@ import { loadUser } from './actions/auth';
 
 import PrivateRoute from './components/layouts/PrivateRoute';
 import CalendarPage from './components/layouts/CalendarPage';
+import NotesPage from './components/layouts/NotesPage';
 import setAuthToken from './utils/setAuthToken';
 import TodosPage from './components/layouts/TodosPage';
 import NotesAddingPage from './components/layouts/NotesAddingPage';
@@ -35,6 +36,7 @@ const App = () => {
           <PrivateRoute component={ CalendarPage } path='/calendar'></PrivateRoute>
           <PrivateRoute component={ TodosPage } path='/todos'></PrivateRoute>
           <PrivateRoute component={ NotesAddingPage } path='/addnotes'></PrivateRoute>
+          <PrivateRoute component={ NotesPage } path='/notes'></PrivateRoute>
           <PrivateRoute component={ Home } path='/'></PrivateRoute>
         </Switch>
       </Router>
