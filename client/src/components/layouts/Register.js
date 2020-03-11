@@ -57,15 +57,15 @@ const Register = ({register, isAuthenticated}) => {
             <p className='form__error'>{ error }</p>
             <div className='form__wrapper'>
                 <label className='form__wrapper__label' htmlFor="email">Email</label>
-                <input type="email" className='form__wrapper_input' name='email' value={ form.email } onChange={ handleChange } />
+                <input type="email" className='form__wrapper__input' name='email' value={ form.email } onChange={ handleChange } />
             </div>
             <div className='form__wrapper'>
                 <label className='form__wrapper__label' htmlFor="password">Hasło</label>
-                <input type="password" className='form__wrapper_input' name='password' value={ form.password } onChange={ handleChange } />
+                <input type="password" className='form__wrapper__input' name='password' value={ form.password } onChange={ handleChange } />
             </div>
             <div className='form__wrapper'>
                 <label className='form__wrapper__label' htmlFor="passwordRep">Powtórz Hasło</label>
-                <input type="password" className='form__wrapper_input' name='passwordRep' value={ form.passwordRep } onChange={ handleChange } />
+                <input type="password" className='form__wrapper__input' name='passwordRep' value={ form.passwordRep } onChange={ handleChange } />
             </div>
             <input type="submit" className='form__submit' value='Zarejestruj' onClick={ handleSubmit } />
             <Link className='form__link' to='/login'>Masz konto? Zaloguj się</Link>

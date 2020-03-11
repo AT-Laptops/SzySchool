@@ -168,12 +168,24 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
+    &__error {
+        height: 20px;
+    }
     &__wrapper {
         display: flex;
         flex-direction: column;
         width: 250px;
         &__label {
             margin: 7px 0px 2px 0px;
+        }
+        &__input {
+            border-radius: 5px;
+            padding: 3px;
+            border: 0;
+            &:focus {
+                outline: none;
+                outline: 2px solid $lighter-purple;
+            }
         }
     }
     &__submit {
@@ -183,6 +195,11 @@ body {
         color: white;
         background-color: transparent;
         border: 2px solid white;
+        transition: .3s;
+        &:hover {
+            background-color: white;
+            color: black;
+        }
     }
     &__link {
         color: $lighter-purple;
