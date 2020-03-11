@@ -1,4 +1,4 @@
-:root {
+    /* :root {
     --purple: #540D6E;
     --purple-darker: #67297D;
     --purple-lighter: #D0AADD;
@@ -14,7 +14,6 @@ body {
     font-family: 'Lato';
 }
 
-/* sidebar */
 .navbar {
     position: fixed;
     bottom: 0;
@@ -50,8 +49,6 @@ body {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
-
-/* calendar */
 
 .calendar {
     display: flex;
@@ -122,7 +119,6 @@ body {
     color: pink;
 }
 
-/* organizer */
 .organizer {
     position: fixed;
     top: 0;
@@ -157,7 +153,6 @@ body {
     width: 100%;
 }
 
-/* form */
 .form {
     display: flex;
     flex-direction: column;
@@ -333,4 +328,4 @@ body {
     .todos__undone__h3, .todos__done__h3 {
         text-align: center;
     }
-}
+} */

@@ -31,10 +31,10 @@ const NotesEditor = () => {
                     toolbar: "styleselect | fontsizeselect fontselect bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table",
                     mobile: {
                         menubar: true,
-                    }
+                    },
                 }}
             ></Editor>
-            <button onClick={ () => console.log(data) }>lkdsjklj</button>
+            <button onClick={ () => console.log(data) }>Zapisz</button>
         </div>
     )    
 }

@@ -1,4 +1,4 @@
-import './../../App.css';
+import './../../style/style.scss';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCalendarAlt, FaHome, FaClipboardList } from 'react-icons/fa';
