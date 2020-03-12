@@ -10,10 +10,8 @@ const UndoneTodos = (props) => {
         if (!todo.isDone) {
             undoneTodos.push(
                 <div className='todos__wrapper'  key={ todo._id } onClick={ () => { dispatch(setTodo(todo, props.date)) } } >
-                    <div className={ todo.isDone ? 'todos__wrapper__button todos__wrapper__button--done' : 'todos__wrapper__button' } ></div>
-                    <p className='todos__wrapper__todo' >
-                        { todo.content }
-                    </p>
+                    <div className='todos__progress-wrapper'><span className='todos__progress'></span></div>
+                    <p className='todos__todo' > { todo.content } </p>
                 </div>
             )
         } else {
@@ -25,7 +23,6 @@ const UndoneTodos = (props) => {
 
     return (
         <div className='todos__undone'>
-            <h3 className='todos__undone__h3'>Do zrobienia:</h3>
             { undoneTodos }
         </div>
     );

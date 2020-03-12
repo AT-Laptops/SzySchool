@@ -34,25 +34,31 @@ const Navigation = () => {
             <div onClick={() => setState('home') } className={state === 'home' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
             <Link to="/" className="navbar__link" >
                 <FaHome className='navbar__icon' />
-                <span className='navbar__site'>home</span>
+                <span className='navbar__site'>Strona gł.</span>
             </Link>
+            </div>
+            <div onClick={() => setState('notes')} className={state === 'notes' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
+                <Link to="/notes" className="navbar__link" >
+                    <MdNoteAdd className='navbar__icon' />
+                    <span className='navbar__site'>Plan</span>
+                </Link>
             </div>
             <div onClick={() => setState('calendar')} className={state === 'calendar' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/calendar" className="navbar__link" >
                     <FaCalendarAlt className='navbar__icon' />
-                    <span className='navbar__site'>kalendarz</span>
+                    <span className='navbar__site'>Terminarz</span>
                 </Link>
             </div>
             <div onClick={() => setState('todos')} className={state === 'todos' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/todos" className="navbar__link" >
                     <FaClipboardList className='navbar__icon' />
-                    <span className='navbar__site'>lista zadań</span>
+                    <span className='navbar__site'>Zadania</span>
                 </Link>
             </div>
             <div onClick={() => setState('notes')} className={state === 'notes' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/notes" className="navbar__link" >
                     <MdNoteAdd className='navbar__icon' />
-                    <span className='navbar__site'>notatka</span>
+                    <span className='navbar__site'>Notatki</span>
                 </Link>
             </div>
         </nav>

@@ -6,6 +6,12 @@ $light-purple: #67297D;
 $light-green: #a2dab1;
 $green: #00a72c;
 $main-font: 'Lato';
+$grey1: #f2f2f2;
+$grey2: #797979;
+$grey3: #ffffff;
+$grey4: #7f7f7f;
+$grey5: #f2f2f2;
+$grey6: #e4e4e4;
 
 @mixin default-flex {
     height: 100vh;
@@ -19,7 +25,7 @@ $main-font: 'Lato';
 }
 
 body {
-    background-color: $body-color;
+    background-color: $grey3;
     font-family: $main-font;
     height: 100vh;
 }
@@ -27,7 +33,7 @@ body {
 .navbar {
     width: 100%;
     height: 9vh;
-    background-color: $purple1;
+    background-color: $grey1;
     display: flex;
     flex-direction: row;
     box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.2);
@@ -36,7 +42,7 @@ body {
     }
     &__element--active {
         .navbar__icon, .navbar__site {
-            color: white;
+            color: black;
         }
     }
     &__link {
@@ -52,11 +58,11 @@ body {
     }
     &__icon {
         font-size: 1.2rem;
-        color: $purple2;
+        color: $grey2;
         margin-bottom: 5px;
     }
     &__site {
-        color: $purple2;
+        color: $grey2;
         font-size: .7rem;
     }
 }
@@ -168,6 +174,43 @@ body {
     @include default-flex;
     &__content {
         flex: 1;
+    }
+}
+
+.todos {
+    padding: 16px;
+    &__header-box {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    &__header, &__add-button {
+        font-size: 1.6rem;
+    }
+    &__today-header {
+        color: $grey4;
+        font-size: 0.9em;
+        margin-left: 4px;
+    }
+    &__today {
+        display: flex;
+        flex-direction: column;
+    }
+    &__wrapper {
+        width: 100%;
+        min-height: 60px;
+        background-color: $grey5;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    &__progress-wrapper {
+        width: 85%;
+        border-radius: 20px;
+        height: 15px;
+        background-color: $grey6;
+        margin-bottom: 8px;
     }
 }
 
@@ -289,9 +332,6 @@ body {
 
 .react-contextmenu-item.react-contextmenu-submenu {
 	padding: 0;
-}
-
-.react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item {
 }
 
 .react-contextmenu-item.react-contextmenu-submenu > .react-contextmenu-item:after {

@@ -1,6 +1,7 @@
 import './../../App.css';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { AiFillPlusCircle } from 'react-icons/ai';
 import UndoneTodos from './../presentation/UndoneTodos';
 import DoneTodos from './../presentation/DoneTodos';
 import AddBox from './../presentation/AddBox';
@@ -13,12 +14,18 @@ const Todos = () => {
     const [isVisible,] = useState(false);
     return (
         <section className='todos'>
-            <h2 className='todos__header'>{day}</h2>
+            <div className='todos__header-box'>
+                <h2 className='todos__header'>Zadania</h2>
+                <AiFillPlusCircle className='todos__add-button'></AiFillPlusCircle>
+            </div>
+            <div className='todos__today'>
+                <h2 className='todos__today-header'>DZISIAJ</h2>
                 <UndoneTodos date={ date }></UndoneTodos>
                 <DoneTodos date={ date }></DoneTodos>
-                <AddBox text='Dodaj Todo' show={ isVisible }>
+            </div>
+                {/* <AddBox text='Dodaj Todo' show={ isVisible }>
                     <AddTodo />
-                </AddBox>
+                </AddBox> */}
         </section>
     )
 }
