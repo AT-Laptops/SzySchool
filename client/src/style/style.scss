@@ -12,11 +12,23 @@ $grey3: #ffffff;
 $grey4: #7f7f7f;
 $grey5: #f2f2f2;
 $grey6: #e4e4e4;
+$grey7: #cecece;
+$grey8: #c2c2c2;
 
 @mixin default-flex {
     height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+@font-face {
+    font-family: gilroy-light;
+    src: url(./../content/Gilroy-Light.otf);
+}
+
+@font-face {
+    font-family: gilroy-bold;
+    src: url(./../content/Gilroy-ExtraBold.otf);
 }
 
 * {
@@ -183,6 +195,7 @@ body {
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
+        font-family: gilroy-bold;
     }
     &__header, &__add-button {
         font-size: 1.6rem;
@@ -196,14 +209,27 @@ body {
         display: flex;
         flex-direction: column;
     }
+    &__todo {
+        font-weight: 600;
+    }
     &__wrapper {
         width: 100%;
         min-height: 60px;
         background-color: $grey5;
         margin-bottom: 10px;
-        border-radius: 10px;
-        padding: 5px;
+        border-radius: 15px;
+        padding: 10px;
         box-sizing: border-box;
+        &--done {
+            .todos__progress {
+                width: 100%;
+                background-color: $grey7;
+            }
+            .todos__todo {
+                text-decoration: line-through;
+                color: $grey8;
+            }
+        }
     }
     &__progress-wrapper {
         width: 85%;
@@ -211,6 +237,16 @@ body {
         height: 15px;
         background-color: $grey6;
         margin-bottom: 8px;
+        position: relative;
+    }
+    &__progress {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 0;
+        width: 50%;
+        background-color: red;
+        border-radius: 20px;
     }
 }
 

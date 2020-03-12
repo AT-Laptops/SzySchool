@@ -9,7 +9,8 @@ const UndoneTodos = (props) => {
     todos.map((todo) => {
         if (todo.isDone) {
             doneTodos.push(
-                <div className='todos__wrapper' key={ todo._id } onClick={ () => { dispatch(setTodo(todo, props.date)) } } >
+                <div className='todos__wrapper todos__wrapper--done' key={ todo._id } onClick={ () => { dispatch(setTodo(todo, props.date)) } } >
+                    <div className='todos__progress-wrapper'><span className='todos__progress'></span></div>
                     <p className='todos__todo' > { todo.content } </p>
                 </div>
             )
