@@ -25,6 +25,10 @@ const CalendarPage = () => {
     return (
         <div className='calendarPage'>
             <AddEventPopup />
+            <div className='calendarPage__switch'>
+                <div>dzień</div>
+                <div>miesiąc</div>
+            </div>
             <div className='calendarPage__content'>
                 <Calendar></Calendar>
                 <Organizer state={state}></Organizer>
