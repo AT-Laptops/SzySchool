@@ -40,6 +40,7 @@ body {
     background-color: $grey3;
     font-family: $main-font;
     height: 100vh;
+    letter-spacing: .5px;
 }
 
 .navbar {
@@ -194,7 +195,7 @@ body {
     &__header-box {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         font-family: gilroy-bold;
     }
     &__header, &__add-button {
@@ -238,6 +239,9 @@ body {
     }
     &__icons {
         font-size: 1.4rem;
+        &--done {
+            color: $grey8;
+        }
     }
     // &__progress-wrapper {
     //     width: 85%;

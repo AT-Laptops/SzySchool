@@ -2,7 +2,7 @@ import './../../style/style.scss';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCalendarAlt, FaHome, FaClipboardList } from 'react-icons/fa';
-import { MdNoteAdd } from 'react-icons/md';
+import { MdNoteAdd, MdGridOn } from 'react-icons/md';
 
 
 const Navigation = () => {
@@ -39,7 +39,7 @@ const Navigation = () => {
             </div>
             <div onClick={() => setState('notes')} className={state === 'notes' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
                 <Link to="/notes" className="navbar__link" >
-                    <MdNoteAdd className='navbar__icon' />
+                    <MdGridOn className='navbar__icon' />
                     <span className='navbar__site'>Plan</span>
                 </Link>
             </div>
