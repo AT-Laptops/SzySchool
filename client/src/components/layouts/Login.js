@@ -37,19 +37,22 @@ const Login = () => {
     }
 
     return (
-        <form className='form' onSubmit={ handleSubmit } >
-            <p className='form__error'>{ error }</p>
-            <div className='form__wrapper'>
-                <label className='form__label' htmlFor="email">Email</label>
-                <input type="email" className='form__input' name='email' value={ form.email } onChange={ handleChange } />
-            </div>
-            <div className='form__wrapper'>
-                <label className='form__label' htmlFor="password">Hasło</label>
-                <input type="password" className='form__input' name='password' value={ form.password } onChange={ handleChange } />
-            </div>
-            <input type="submit" className='form__submit' value='Zaloguj' onClick={ handleSubmit } />
-            <Link className='form__link' to='/register'>Nie masz konta? Stwórz</Link>
-        </form>
+        <div className='login'>
+            <h1 className='login__header'>Logowanie</h1>
+            <form className='form' onSubmit={ handleSubmit } >
+                <p className='form__error'>{ error }</p>
+                <div className='form__wrapper'>
+                    <label className='form__label' htmlFor="email">Adres e-mail</label>
+                    <input type="email" className='form__input' name='email' value={ form.email } onChange={ handleChange } />
+                </div>
+                <div className='form__wrapper'>
+                    <label className='form__label' htmlFor="password">Hasło</label>
+                    <input type="password" className='form__input' name='password' value={ form.password } onChange={ handleChange } />
+                </div>
+                <input type="submit" className='form__submit' value='Zaloguj się' onClick={ handleSubmit } />
+            </form>
+            <span className='login__question'>Nie masz konta?<Link className='login__link' to='/register'> Stwórz</Link></span>
+        </div>
     )
 }
   

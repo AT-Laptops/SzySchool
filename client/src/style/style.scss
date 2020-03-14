@@ -4,6 +4,7 @@ $purple2: #cda9df;
 $lighter-purple: #D0AADD;
 $light-purple: #67297D;
 $light-green: #a2dab1;
+$blue: #347df4;
 $green: #00a72c;
 $grey1: #f2f2f2;
 $grey2: #797979;
@@ -38,6 +39,7 @@ $grey9: #d9d9d9;
 
 body {
     background-color: $grey3;
+    font-family: 'Roboto', sans-serif;
     height: 100vh;
     letter-spacing: .5px;
 }
@@ -261,15 +263,38 @@ body {
     // }
 }
 
-.form {
+.login {
     background-color: $grey1;
     height: 100vh;
     display: flex;
-    font-family: gilroy-bold;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &__header {
+        margin-top: -50px;
+        margin-bottom: 50px;
+    }
+    &__question {
+        position: absolute;
+        bottom: 10px;
+    }
+    &__link {
+        color: $blue;
+        text-decoration: none;
+    }
+}
+
+.form {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: black;
+    width: 100%;
+    &__header {
+        font-family: gilroy-bold;
+    }
     &__error {
         height: 20px;
     }
@@ -278,6 +303,7 @@ body {
         flex-direction: column;
         width: 80%;
         margin-bottom: 20px;
+        max-width: 300px;
     }
     &__label {
         margin-bottom: 5px;
@@ -285,15 +311,28 @@ body {
     &__input {
         background-color: white;
         border: 1.5px solid $grey9;
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 10px 15px;
         height: 50px;
         width: 100%;
         box-sizing: border-box;
-        font-family: gilroy-light;
+        font-size: 1.1rem;
+        letter-spacing: .5px;
         &:focus {
             outline: none;
         }
+    }
+    &__submit {
+        width: 80%;
+        max-width: 300px;
+        height: 50px;
+        color: white;
+        border-radius: 10px;
+        background-color: $blue;
+        border: 0;
+        -webkit-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.5);
+        -moz-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.5);
+        box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.5);
     }
 }
 
