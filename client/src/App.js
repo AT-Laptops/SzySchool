@@ -19,8 +19,7 @@ import Home from './components/layouts/Home';
 
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider, styled} from 'baseui';
-import {StatefulInput} from 'baseui/input';
+import {LightTheme, BaseProvider } from 'baseui';
 const engine = new Styletron();
 
 if (localStorage.token) {

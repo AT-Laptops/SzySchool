@@ -40,12 +40,12 @@ const Login = () => {
         <form className='form' onSubmit={ handleSubmit } >
             <p className='form__error'>{ error }</p>
             <div className='form__wrapper'>
-                <label className='form__wrapper__label' htmlFor="email">Email</label>
-                <input type="email" className='form__wrapper__input' name='email' value={ form.email } onChange={ handleChange } />
+                <label className='form__label' htmlFor="email">Email</label>
+                <input type="email" className='form__input' name='email' value={ form.email } onChange={ handleChange } />
             </div>
             <div className='form__wrapper'>
-                <label className='form__wrapper__label' htmlFor="password">Hasło</label>
-                <input type="password" className='form__wrapper__input' name='password' value={ form.password } onChange={ handleChange } />
+                <label className='form__label' htmlFor="password">Hasło</label>
+                <input type="password" className='form__input' name='password' value={ form.password } onChange={ handleChange } />
             </div>
             <input type="submit" className='form__submit' value='Zaloguj' onClick={ handleSubmit } />
             <Link className='form__link' to='/register'>Nie masz konta? Stwórz</Link>
