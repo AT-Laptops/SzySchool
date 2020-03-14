@@ -28,7 +28,7 @@ $grey8: #c2c2c2;
 
 @font-face {
     font-family: gilroy-bold;
-    src: url(./../content/Gilroy-ExtraBold.otf);
+    src: url(./../content/Gilroy-Bold.ttf);
 }
 
 * {
@@ -167,7 +167,7 @@ body {
     position: fixed;
     background-color: $lighter-purple;
     transform: translateX(0%);
-    transition: .3s ease-in-out;
+    transition: 1s ease-out;
     box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.2);
     top: 0;
     right: 0;
@@ -204,6 +204,7 @@ body {
         color: $grey4;
         font-size: 0.9em;
         margin-left: 4px;
+        margin-bottom: 10px;
     }
     &__today {
         display: flex;
@@ -211,43 +212,50 @@ body {
     }
     &__todo {
         font-weight: 600;
+        margin: 0px 10px;
+        flex: 1;
     }
     &__wrapper {
         width: 100%;
-        min-height: 60px;
+        min-height: 50px;
         background-color: $grey5;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         border-radius: 15px;
-        padding: 10px;
+        padding: 10px 15px;
         box-sizing: border-box;
+        display: flex;
+        align-items: center;
         &--done {
-            .todos__progress {
-                width: 100%;
-                background-color: $grey7;
-            }
+            // .todos__progress {
+            //     width: 100%;
+            //     background-color: $grey7;
+            // }
             .todos__todo {
                 text-decoration: line-through;
                 color: $grey8;
             }
         }
     }
-    &__progress-wrapper {
-        width: 85%;
-        border-radius: 20px;
-        height: 15px;
-        background-color: $grey6;
-        margin-bottom: 8px;
-        position: relative;
+    &__icons {
+        font-size: 1.4rem;
     }
-    &__progress {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        left: 0;
-        width: 50%;
-        background-color: red;
-        border-radius: 20px;
-    }
+    // &__progress-wrapper {
+    //     width: 85%;
+    //     border-radius: 20px;
+    //     height: 15px;
+    //     background-color: $grey6;
+    //     margin-bottom: 8px;
+    //     position: relative;
+    // }
+    // &__progress {
+    //     position: absolute;
+    //     height: 100%;
+    //     top: 0;
+    //     left: 0;
+    //     width: 50%;
+    //     background-color: red;
+    //     border-radius: 20px;
+    // }
 }
 
 .form {

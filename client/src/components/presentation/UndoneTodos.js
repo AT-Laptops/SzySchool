@@ -1,6 +1,8 @@
 import React from 'react';
 import { setTodo } from './../../actions/setTodo';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaChevronDown } from 'react-icons/fa';
+import { MdCheckBoxOutlineBlank, MdCheckBox} from 'react-icons/md';
 
 const UndoneTodos = (props) => {
     const dispatch = useDispatch();
@@ -10,8 +12,9 @@ const UndoneTodos = (props) => {
         if (!todo.isDone) {
             undoneTodos.push(
                 <div className='todos__wrapper'  key={ todo._id } onClick={ () => { dispatch(setTodo(todo, props.date)) } } >
-                    <div className='todos__progress-wrapper'><span className='todos__progress'></span></div>
+                    <MdCheckBoxOutlineBlank className='todos__icons'></MdCheckBoxOutlineBlank>
                     <p className='todos__todo' > { todo.content } </p>
+                    <FaChevronDown className='todos__icons'></FaChevronDown>
                 </div>
             )
         } else {
