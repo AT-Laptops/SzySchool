@@ -6,11 +6,11 @@ import { useHistory, Link } from 'react-router-dom';
 
 const validate = (form) => {
     if(!form.email) {
-        return 'Musisz podać email';
+        return 'Musisz podać email!';
     }
 
     if (!form.password) {
-        return 'Wpisz hasło';
+        return 'Wpisz hasło!';
     }
 
     return null;
@@ -39,8 +39,8 @@ const Login = () => {
     return (
         <div className='login'>
             <h1 className='login__header'>Logowanie</h1>
+            <p className='login__error'>{ error }</p>
             <form className='form' onSubmit={ handleSubmit } >
-                <p className='form__error'>{ error }</p>
                 <div className='form__wrapper'>
                     <label className='form__label' htmlFor="email">Adres e-mail</label>
                     <input type="email" className='form__input' name='email' value={ form.email } onChange={ handleChange } />
