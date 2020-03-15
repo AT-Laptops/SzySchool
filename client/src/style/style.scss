@@ -4,6 +4,7 @@ $purple2: #cda9df;
 $lighter-purple: #D0AADD;
 $light-purple: #67297D;
 $light-green: #a2dab1;
+$red: #e52b2b;
 $blue: #347df4;
 $green: #00a72c;
 $grey1: #f2f2f2;
@@ -263,7 +264,7 @@ body {
     // }
 }
 
-.login {
+.form-wrapper {
     background-color: $grey1;
     height: 100vh;
     display: flex;
@@ -288,7 +289,7 @@ body {
         position: absolute;
         text-align: center;
         display: block;
-        background-color: red;
+        background-color: $red;
         color: white;
         width: 100%;
         box-sizing: border-box;
@@ -315,6 +316,12 @@ body {
     &__label {
         margin-bottom: 5px;
     }
+    &__star {
+        color: $red;
+        &--hide {
+            display: none;
+        }
+    }
     &__input {
         background-color: white;
         border: 2px solid $grey9;
@@ -327,6 +334,9 @@ body {
         letter-spacing: .5px;
         &:focus {
             outline: none;
+        }
+        &--error {
+            border: 2px solid $red;
         }
     }
     &__submit {

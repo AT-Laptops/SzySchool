@@ -1,8 +1,7 @@
 import './../../App.css';
 import React, { useState } from 'react';
 import { register } from './../../actions/register';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useInput from '../containers/useInput';
 import { Link } from 'react-router-dom';
 
@@ -10,79 +9,95 @@ const validate = form => {
     // eslint-disable-next-line no-use-before-define
     const reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i;
     if(!form.email) {
-        return 'Email jest wymagany';
+        return {
+            msg: 'Email jest wymagany',
+            target: 'email',
+        };
     } else if (!reg.test(form.email)) {
-        return "Zły email";
+        return {
+            msg: "Zły email",
+            target: 'email',
+        };
     }
 
     if (!form.password) {
-        return "Hasło jest wymagane";
+        return {
+            msg: "Hasło jest wymagane",
+            target: 'password',
+        };
     } else if (form.password < 6) {
-        return "Hasło jest za krótkie";
+        return {
+            msg: "Hasło jest za krótkie",
+            target: 'password',
+        };
     }
 
     if (!form.passwordRep) {
-        return "Hasło jest wymagane";
-    } else if (form.passwordRep < 8) {
-        return "Hasło jest za krótkie";
+        return {
+            msg: "Hasło jest wymagane",
+            target: 'password2',
+        };
+    } else if (form.passwordRep < 6) {
+        return {
+            msg: "Hasło jest za krótkie",
+            target: 'password2',
+        }
     }
 
     if (form.password !== form.passwordRep) {
-        return "Hasła nie są identyczne";
+        return {
+            msg: "Hasła nie są identyczne",
+            target: 'password2',
+        };
     }
 
     return null;
 }
 
-const Register = ({register, isAuthenticated}) => {
+const Register = () => {
     const [error, setError] = useState(null);
+    const [errorTarget, setErrorTarget] = useState(null);
     const { form, handleChange } = useInput({
         email: '',
         password: '',
         passwordRep: '',
     });
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const errorMsg = validate(form);
+        const errorMsg = validate(form).msg;
+        const errorTarget = validate(form).target;
         if (errorMsg) {
             setError(errorMsg);
+            setErrorTarget(errorTarget);
             return;
         }
-        register(form.email, form.password);
+        dispatch(register(form.email, form.password));
     }
 
     return (
-        <form className='form' action="" onSubmit={ handleSubmit } >
-            <p className='form__error'>{ error }</p>
-            <div className='form__wrapper'>
-                <label className='form__wrapper__label' htmlFor="email">Email</label>
-                <input type="email" className='form__wrapper__input' name='email' value={ form.email } onChange={ handleChange } />
-            </div>
-            <div className='form__wrapper'>
-                <label className='form__wrapper__label' htmlFor="password">Hasło</label>
-                <input type="password" className='form__wrapper__input' name='password' value={ form.password } onChange={ handleChange } />
-            </div>
-            <div className='form__wrapper'>
-                <label className='form__wrapper__label' htmlFor="passwordRep">Powtórz Hasło</label>
-                <input type="password" className='form__wrapper__input' name='passwordRep' value={ form.passwordRep } onChange={ handleChange } />
-            </div>
-            <input type="submit" className='form__submit' value='Zarejestruj' onClick={ handleSubmit } />
-            <Link className='form__link' to='/login'>Masz konto? Zaloguj się</Link>
-        </form>
+        <div className='form-wrapper'>
+            <h1 className='form-wrapper__header'>Rejestracja</h1>
+            <p className='form-wrapper__error'>{ error }</p>
+            <form className='form' action="" onSubmit={ handleSubmit } >
+                <div className='form__wrapper'>
+                    <label className='form__label' htmlFor="email">Email<span className={ errorTarget === 'email' ? 'form__star' : 'form__star form__star--hide' }> *</span></label>
+                    <input type="email" className={ errorTarget === 'email' ? 'form__input form__input--error' : 'form__input' } name='email' value={ form.email } onChange={ handleChange } />
+                </div>
+                <div className='form__wrapper'>
+                    <label className='form__label' htmlFor="password">Hasło<span className={ errorTarget === 'password' ? 'form__star' : 'form__star form__star--hide' }> *</span></label>
+                    <input type="password" className={ errorTarget === 'password' ? 'form__input form__input--error' : 'form__input' } name='password' value={ form.password } onChange={ handleChange } />
+                </div>
+                <div className='form__wrapper'>
+                    <label className='form__label' htmlFor="passwordRep">Powtórz Hasło<span className={ errorTarget === 'password2' ? 'form__star' : 'form__star form__star--hide' }> *</span></label>
+                    <input type="password" className={ errorTarget === 'password2' ? 'form__input form__input--error' : 'form__input' } name='passwordRep' value={ form.passwordRep } onChange={ handleChange } />
+                </div>
+                <input type="submit" className='form__submit' value='Zarejestruj' onClick={ handleSubmit } />
+                <span className='form-wrapper__question'>Masz konto?<Link className='form-wrapper__link' to='/link'> Zaloguj się</Link></span>
+            </form>
+        </div>
     )
 }
-
-Register.propTypes = {
-    register: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool
-};
   
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-});
-  
-export default connect(
-    mapStateToProps,
-    { register }
-)(Register);
+export default Register;
