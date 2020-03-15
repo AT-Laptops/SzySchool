@@ -5,7 +5,8 @@ $lighter-purple: #D0AADD;
 $light-purple: #67297D;
 $light-green: #a2dab1;
 $red: #e52b2b;
-$blue: #347df4;
+$blue1: #2372f3;
+$blue2: #2d78f3;
 $green: #00a72c;
 $grey1: #f2f2f2;
 $grey2: #797979;
@@ -16,6 +17,7 @@ $grey6: #e4e4e4;
 $grey7: #cecece;
 $grey8: #c2c2c2;
 $grey9: #d9d9d9;
+$grey10: #404040;
 
 @mixin default-flex {
     height: 100vh;
@@ -51,7 +53,9 @@ body {
     background-color: $grey1;
     display: flex;
     flex-direction: row;
-    box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px -5px 20px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px -5px 20px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px -5px 20px 0px rgba(0,0,0,0.1);
     &__element {
         flex: 1 1 0px;
     }
@@ -282,7 +286,7 @@ body {
         bottom: 10px;
     }
     &__link {
-        color: $blue;
+        color: $blue1;
         text-decoration: none;
     }
     &__error:not(:empty) {
@@ -315,6 +319,7 @@ body {
     }
     &__label {
         margin-bottom: 5px;
+        font-family: $grey10;
     }
     &__star {
         color: $red;
@@ -348,7 +353,7 @@ body {
         font-weight: 600;
         border-radius: 10px;
         font-size: 18px;
-        background-color: $blue;
+        background: linear-gradient(180deg, rgba(35,114,243,1) 0%, rgba(45,120,243,1) 50%, rgba(35,114,243,1) 50%, rgba(45,120,243,1) 100%);
         border: 0;
         letter-spacing: .5px;
         -webkit-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);

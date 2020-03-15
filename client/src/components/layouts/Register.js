@@ -51,7 +51,10 @@ const validate = form => {
         };
     }
 
-    return null;
+    return {
+        msg: null,
+        target: null,
+    };
 }
 
 const Register = () => {
