@@ -329,6 +329,23 @@ body {
     }   
 }
 
+.events {
+    padding: 16px;
+    &__wrapper {
+        margin-bottom: 15px;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 15px;
+        font-size: 0.9rem;
+        color: white;
+        font-weight: 600;
+    }
+}
+
 .form-wrapper {
     background-color: $grey1;
     height: 100vh;

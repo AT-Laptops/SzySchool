@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { FaChevronDown } from 'react-icons/fa';
 
 const Events = () => {
     const events = useSelector(state => state.reminder.events);
@@ -11,8 +12,9 @@ const Events = () => {
 
         events.map(event => {
             eventsArray.push(
-                <div key={event._id} style={{ background: setColor(event.predefinedType) }}>
-                    <span>{ event.description }</span>
+                <div className='events__wrapper' key={event._id} style={{ background: setColor(event.predefinedType) }}>
+                    <span className='events__title' >{ event.title }</span>
+                    <FaChevronDown className='events__icons'></FaChevronDown>
                 </div>
             );
             return eventsArray;
@@ -42,7 +44,7 @@ const Events = () => {
     }
 
     return (
-        <section>
+        <section className='events'>
             { eventsArr }
         </section>
     )
