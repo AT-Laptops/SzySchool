@@ -45,9 +45,9 @@ router.post('/add',
                 errors: errors.array()
             });
         }
-        const {date,content} = req.body;
+        const {date,content,bullets} = req.body;
         try {
-            todo = new Todo({owner: req.user.id,date,content});
+            todo = new Todo({owner: req.user.id,date,content,bullets});
             await todo.save();
             res.json(todo);
         } catch (error) {
@@ -114,25 +114,11 @@ router.post('/:id',
         const id = req.params.id;
         const {content,date,isDone} = req.body
         try {
-            // if(req.body.date && req.body.content) {
-                todo = await Todo.findByIdAndUpdate(
-                    {_id: id},
-                    {content,date,isDone},
-                    {new:true}
-                )
-            // }else if(req.body.content) {
-            //     todo = await Todo.findByIdAndUpdate(
-            //         {_id: id},
-            //         {content},
-            //         {new:true}
-            //     )
-            // }else if(req.body.date) {
-            //     todo = await Todo.findByIdAndUpdate(
-            //         {_id: id},
-            //         {date},
-            //         {new:true}
-            //     )
-            // }
+            todo = await Todo.findByIdAndUpdate(
+                {_id: id},
+                {content,date,isDone},
+                {new:true}
+            )
             return res.json({"message":"complete"})
         } catch (error) {
             console.error(error.message);
@@ -157,9 +143,13 @@ router.post('/:id/changedone',
         const id = req.params.id;
         const {isDone} = req.body
         try {
+            
+            let todo = await Todo.findById(id);
+            let newTodoBullets = todo.bullets
+            newTodoBullets.forEach(bullet => bullet.isDoneBullet = true);
             todo = await Todo.findByIdAndUpdate(
                 {_id: id},
-                {isDone},
+                {isDone,bullets:newTodoBullets},
                 {new:true}
             )
             return res.json({"message":"complete"})
@@ -169,5 +159,46 @@ router.post('/:id/changedone',
         }
     }
 )
+
+// @route   POST api/todos/:id/changedonebullet/:idd
+// @desc    set specific todo as done
+// @access  Private
+router.post('/:id/changedonebullet/:idd',
+    [
+        check('isDoneBullet','isDoneBullet is required').not().isEmpty(),
+    ]
+    ,auth,async(req,res)=>{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+        const id = req.params.id;
+        const id2 = req.params.idd;
+        const {isDoneBullet} = req.body
+        try {
+            
+            let todo = await Todo.findById(id);
+            let newTodoBullets = todo.bullets;
+            newTodoBullets.forEach(bullet => {
+                if(bullet._id == id2){
+                    bullet.isDoneBullet = isDoneBullet;
+                }
+            });
+            todo = await Todo.findByIdAndUpdate(
+                {_id: id},
+                {bullets:newTodoBullets},
+                {new:true}
+            )
+            return res.json({"message":"complete"})
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
+    }
+)
+
+
 
 module.exports = router;
