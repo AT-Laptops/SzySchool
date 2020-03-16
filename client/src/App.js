@@ -44,7 +44,7 @@ const App = () => {
           <PrivateRoute component={ TodosPage } path='/todos'></PrivateRoute>
           <PrivateRoute component={ NotesAddingPage } path='/addnotes'></PrivateRoute>
           <PrivateRoute component={ NotesPage } path='/notes'></PrivateRoute>
-          <PrivateRoute component={ Home } path='/'></PrivateRoute>
+          <PrivateRoute component={ Home } path='/home'></PrivateRoute>
         </Switch>
       </Router>
     </Provider>

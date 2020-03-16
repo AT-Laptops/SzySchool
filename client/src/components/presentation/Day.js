@@ -1,4 +1,3 @@
-import './../../App.css';
 import React, { useState } from 'react';
 import { todos } from './../../actions/todos';
 import { showAddTodoPopup, showAddEventPopup } from './../../actions/popups';

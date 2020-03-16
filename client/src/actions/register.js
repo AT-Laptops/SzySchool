@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { REGISTER_SUCCESS, REGISTER_FAIL } from './types';
+import { loadUser } from './auth';
 
-export const register = (email, password) => async dispatch => {
+export const register = (email, password, history) => async dispatch => {
 
     const config = {
         headers: {
@@ -13,7 +14,9 @@ export const register = (email, password) => async dispatch => {
     try {
         let result;
         result = await axios.post('/api/users', body, config);
-        dispatch({ type: REGISTER_SUCCESS, payload: result.data });
+        await dispatch({ type: REGISTER_SUCCESS, payload: result.data });
+        await dispatch(loadUser());
+        history.push('./');
     } catch (error) {
         dispatch({ type: REGISTER_FAIL });
         console.log(error);

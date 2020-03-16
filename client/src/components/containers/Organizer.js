@@ -1,4 +1,3 @@
-import './../../App.css';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { todos } from './../../actions/todos';

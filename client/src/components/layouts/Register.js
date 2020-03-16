@@ -1,9 +1,8 @@
-import './../../App.css';
 import React, { useState } from 'react';
 import { register } from './../../actions/register';
 import { useDispatch } from 'react-redux';
 import useInput from '../containers/useInput';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const validate = form => {
     // eslint-disable-next-line no-use-before-define
@@ -66,6 +65,7 @@ const Register = () => {
         passwordRep: '',
     });
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -76,7 +76,7 @@ const Register = () => {
             setErrorTarget(errorTarget);
             return;
         }
-        dispatch(register(form.email, form.password));
+        dispatch(register(form.email, form.password, history));
     }
 
     return (

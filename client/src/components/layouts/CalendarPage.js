@@ -20,7 +20,7 @@ const CalendarPage = () => {
             })
         }
         showOrganizer();
-    }, [])
+    }, []);
 
     return (
         <div className='calendarPage'>

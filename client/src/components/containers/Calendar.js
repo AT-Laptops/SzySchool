@@ -1,4 +1,3 @@
-import './../../App.css';
 import React, { useState, useEffect } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import Day from './../presentation/Day';

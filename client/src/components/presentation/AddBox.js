@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './../../App.css';
 import { FaPlus } from 'react-icons/fa';
 
 const AddBox = (props) => {
