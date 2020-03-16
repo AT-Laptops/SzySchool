@@ -25,6 +25,23 @@ $grey10: #404040;
     flex-direction: column;
 }
 
+@mixin default-button {
+    margin-top: 21px;
+    width: 80%;
+    max-width: 300px;
+    height: 50px;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    font-size: 18px;
+    background: linear-gradient(180deg, rgba(35,114,243,1) 0%, rgba(45,120,243,1) 50%, rgba(35,114,243,1) 50%, rgba(45,120,243,1) 100%);
+    border: 0;
+    letter-spacing: .5px;
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);
+    box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);
+}
+
 @font-face {
     font-family: gilroy-light;
     src: url(./../content/Gilroy-Light.otf);
@@ -50,6 +67,38 @@ body {
 .welcomePage {
     height: 100vh;
     width: 100%;
+    position: relative;
+    &__wrapper {
+        width: 100%;
+        position: absolute;
+        top: 45%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__logo {
+        width: 170px;
+        height: 170px;
+        margin-bottom: 100px;
+    }
+    &__button {
+        @include default-button;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    }
+    &__text {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    &__link {
+        color: $blue1;
+        text-decoration: none;
+    }
 }
 
 .navbar {
@@ -350,20 +399,7 @@ body {
         }
     }
     &__submit {
-        margin-top: 21px;
-        width: 80%;
-        max-width: 300px;
-        height: 50px;
-        color: white;
-        font-weight: 600;
-        border-radius: 10px;
-        font-size: 18px;
-        background: linear-gradient(180deg, rgba(35,114,243,1) 0%, rgba(45,120,243,1) 50%, rgba(35,114,243,1) 50%, rgba(45,120,243,1) 100%);
-        border: 0;
-        letter-spacing: .5px;
-        -webkit-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);
-        -moz-box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);
-        box-shadow: 0px 5px 10px 0px rgba(52,125,244,0.7);
+        @include default-button;
     }
 }
 

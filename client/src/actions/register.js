@@ -16,7 +16,7 @@ export const register = (email, password, history) => async dispatch => {
         result = await axios.post('/api/users', body, config);
         await dispatch({ type: REGISTER_SUCCESS, payload: result.data });
         await dispatch(loadUser());
-        history.push('./');
+        history.push('/home');
     } catch (error) {
         dispatch({ type: REGISTER_FAIL });
         console.log(error);

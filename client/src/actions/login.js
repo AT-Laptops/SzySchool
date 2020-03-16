@@ -17,7 +17,7 @@ export const login = (email, password, history) => async dispatch => {
         console.log(result);
         await dispatch({ type: LOGIN_SUCCESS, payload: result.data });
         await dispatch(loadUser());
-        history.push('/');
+        history.push('/home');
       } catch (error) {
         dispatch({ type: LOGIN_FAIL });
         console.log(error);
