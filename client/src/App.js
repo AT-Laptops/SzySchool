@@ -16,6 +16,7 @@ import NotesAddingPage from './components/layouts/NotesAddingPage';
 import Login from './components/layouts/Login';
 import Register from './components/layouts/Register';
 import Home from './components/layouts/Home';
+import WelcomePage from './components/layouts/WelcomePage';
 
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
@@ -38,6 +39,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Switch>
+          <Route exact path='/' component={ WelcomePage }></Route>
           <Route exact path='/login' component={ Login }></Route>
           <Route exact path='/register' component={ Register }></Route>
           <PrivateRoute component={ CalendarPage } path='/calendar'></PrivateRoute>
