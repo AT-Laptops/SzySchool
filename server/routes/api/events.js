@@ -23,7 +23,7 @@ router.get('/mine',auth,async(req,res)=>{
 // @access  Private
 router.post('/add',
   [
-    check('description','Description is required').not().isEmpty(),
+    check('predefinedType','Type is required').not().isEmpty(),
     check('date','Date is required').not().isEmpty(),
   ],auth,async(req,res)=>{
     const errors = validationResult(req);
@@ -33,10 +33,10 @@ router.post('/add',
       });
     }
 
-    const {date,description,title} = req.body;
+    const {date,description,title,timeInHours,predefinedType,lessonSubject} = req.body;
 
     try {
-      event = new Event({owner: req.user.id,date,description,title});
+      event = new Event({owner: req.user.id,date,description,title,timeInHours,predefinedType,lessonSubject});
       await event.save();
       res.json(event);
     } catch (error) {
@@ -92,6 +92,9 @@ router.post('/:id',
         check('title','Content is required, even if it is the same').not().isEmpty(),
         check('date','Date is required, even if it is the same').not().isEmpty(),
         check('description','Description is required, even if it is the same').not().isEmpty(),
+        check('timeInHours','timeInHours is required, even if it is the same').not().isEmpty(),
+        check('lessonSubject','lessonSubject is required, even if it is the same').not().isEmpty(),
+        check('predefinedType','predefinedType is required, even if it is the same').not().isEmpty(),
     ]
     ,auth,async(req,res)=>{
         const errors = validationResult(req);
@@ -121,7 +124,7 @@ router.post('/:id',
     GET api/events/mine  -> zwróci ci wszystkie eventy zalogowanego użytkownika
     POST api/events/add   -> wysylasz dane eventa i tyle
     GET api/events/:id   -> zwraca ci dane o konkretnym evencie
-    POST api/events/:id  -> zapisuje zmiany, musiz mu wysłac tytuł nawet jak jest taki sam oraz description i date nawet jak jest taki sam, po zapisaniu zwroci ci "message":"complete". to znaczy ze masz przeładować stronę.
+    POST api/events/:id  -> zapisuje zmiany, musiz mu wysłac dane nawet jak sa takie same (wszystkie) po zapisaniu zwroci ci "message":"complete". to znaczy ze masz przeładować stronę.
 */
 
 
