@@ -17,6 +17,9 @@ const Navigation = () => {
             case '/calendar' : 
                 setState('calendar'); 
                 break;
+            case '/events' : 
+                setState('events'); 
+                break;
             case '/todos' :
                 setState('todos');
                 break;
@@ -37,8 +40,8 @@ const Navigation = () => {
                 <span className='navbar__site'>Strona gł.</span>
             </Link>
             </div>
-            <div onClick={() => setState('notes')} className={state === 'notes' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
-                <Link to="/notes" className="navbar__link" >
+            <div onClick={() => setState('events')} className={state === 'events' ? 'navbar__element navbar__element--active' : 'navbar__element'}>
+                <Link to="/events" className="navbar__link" >
                     <MdGridOn className='navbar__icon' />
                     <span className='navbar__site'>Plan</span>
                 </Link>

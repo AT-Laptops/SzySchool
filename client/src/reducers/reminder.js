@@ -1,7 +1,7 @@
 import {
     SET_DAY, 
-    GET_DAY,
     GET_TODOS,
+    GET_EVENTS,
 } from './../actions/types';
 
 const initialDay = {
@@ -18,10 +18,10 @@ export default (state = initialDay, action) => {
                 ...state,
                 date: payload,
             }
-        case GET_DAY:
+        case GET_EVENTS:
             return {
                 ...state,
-                todos: payload,
+                events: payload,
             }
         case GET_TODOS:
             return {

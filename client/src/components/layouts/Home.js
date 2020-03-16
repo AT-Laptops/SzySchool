@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import UndoneTodos from './../presentation/UndoneTodos';
 import { useDispatch } from 'react-redux';
 import { todos } from './../../actions/todos';
+import { events } from './../../actions/events';
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(todos(new Date()));
+        dispatch(events(new Date()));
     }, [dispatch]);
 
     return (

@@ -12,6 +12,7 @@ import CalendarPage from './components/layouts/CalendarPage';
 import NotesPage from './components/layouts/NotesPage';
 import setAuthToken from './utils/setAuthToken';
 import TodosPage from './components/layouts/TodosPage';
+import EventsPage from './components/layouts/EventsPage';
 import NotesAddingPage from './components/layouts/NotesAddingPage';
 import Login from './components/layouts/Login';
 import Register from './components/layouts/Register';
@@ -39,14 +40,15 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path='/' component={ WelcomePage }></Route>
+          <Route exact path='/welcome' component={ WelcomePage }></Route>
           <Route exact path='/login' component={ Login }></Route>
           <Route exact path='/register' component={ Register }></Route>
           <PrivateRoute component={ CalendarPage } path='/calendar'></PrivateRoute>
           <PrivateRoute component={ TodosPage } path='/todos'></PrivateRoute>
+          <PrivateRoute component={ EventsPage } path='/events'></PrivateRoute>
           <PrivateRoute component={ NotesAddingPage } path='/addnotes'></PrivateRoute>
           <PrivateRoute component={ NotesPage } path='/notes'></PrivateRoute>
-          <PrivateRoute component={ Home } path='/home'></PrivateRoute>
+          <PrivateRoute component={ Home } path='/'></PrivateRoute>
         </Switch>
       </Router>
     </Provider>

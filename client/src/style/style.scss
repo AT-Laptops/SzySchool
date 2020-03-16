@@ -322,6 +322,13 @@ body {
     // }
 }
 
+.eventsPage {
+    @include default-flex;
+    &__content {
+        flex: 1;
+    }   
+}
+
 .form-wrapper {
     background-color: $grey1;
     height: 100vh;
