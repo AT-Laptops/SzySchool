@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { todos } from './../../actions/todos';
 import { showAddTodoPopup, showAddEventPopup } from './../../actions/popups';
 import { useDispatch, useSelector } from 'react-redux';
