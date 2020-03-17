@@ -36,7 +36,7 @@ router.get('/withoutdate',auth,async(req,res)=>{
 // @access  Private
 router.post('/add',
     [
-        check('content','Content is required').not().isEmpty(),
+        check('title','Title is required').not().isEmpty(),
     ],auth,async(req,res)=>{
         const errors = validationResult(req);
         if (!errors.isEmpty()){
@@ -45,9 +45,9 @@ router.post('/add',
                 errors: errors.array()
             });
         }
-        const {date,content,bullets} = req.body;
+        const {date,title,bullets} = req.body;
         try {
-            todo = new Todo({owner: req.user.id,date,content,bullets});
+            todo = new Todo({owner: req.user.id,date,title,bullets});
             await todo.save();
             res.json(todo);
         } catch (error) {
@@ -100,7 +100,7 @@ router.get('/:id',auth,async(req,res)=>{
 // @access  Private
 router.post('/:id',
     [
-        check('content','Content is required').not().isEmpty(),
+        check('title','Title is required').not().isEmpty(),
         check('date','Date is required').not().isEmpty(),
         check('isDone','isDone is required').not().isEmpty(),
     ]
@@ -112,11 +112,11 @@ router.post('/:id',
             });
         }
         const id = req.params.id;
-        const {content,date,isDone} = req.body
+        const {title,date,isDone} = req.body
         try {
             todo = await Todo.findByIdAndUpdate(
                 {_id: id},
-                {content,date,isDone},
+                {title,date,isDone},
                 {new:true}
             )
             return res.json({"message":"complete"})

@@ -15,12 +15,13 @@ const TodoSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    title: {
+        type:String,
+        default: "Zadanie"
+    },
     date: {
         type: Date,
         default: null
-    },
-    content: {
-        type: String,
     },
     isDone: {
         type: Boolean,
