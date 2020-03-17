@@ -5,6 +5,20 @@ const auth = require('../../middleware/auth');
 
 const Event = require('../../models/Event');
 
+// @route   GET api/events/types
+// @desc    Get all predefined types of events
+// @access  Private
+router.get('/types',auth,async(req,res)=>{
+  try {
+    const types = Event.schema.path('predefinedType').enumValues
+    res.json(types);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error')
+  }
+})
+
+
 // @route   GET api/events/mine
 // @desc    Get mine events (ALL)
 // @access  Private
