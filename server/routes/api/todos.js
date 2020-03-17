@@ -143,14 +143,12 @@ router.post('/:id/changedone',
         const id = req.params.id;
         const {isDone} = req.body
         try {
-            
-            let todo = await Todo.findById(id);
-            let newTodoBullets = todo.bullets
-            newTodoBullets.forEach(bullet => bullet.isDoneBullet = true);
-            todo = await Todo.findByIdAndUpdate(
-                {_id: id},
-                {isDone,bullets:newTodoBullets},
-                {new:true}
+            todo = await Todo.findOneAndUpdate(
+                {"_id":id},
+                {"$set":{
+                    "isDone":isDone,
+                    "bullets.$[].isDoneBullet":isDone
+                }}
             )
             return res.json({"message":"complete"})
         } catch (error) {
@@ -178,18 +176,11 @@ router.post('/:id/changedonebullet/:idd',
         const id2 = req.params.idd;
         const {isDoneBullet} = req.body
         try {
-            
-            let todo = await Todo.findById(id);
-            let newTodoBullets = todo.bullets;
-            newTodoBullets.forEach(bullet => {
-                if(bullet._id == id2){
-                    bullet.isDoneBullet = isDoneBullet;
-                }
-            });
-            todo = await Todo.findByIdAndUpdate(
-                {_id: id},
-                {bullets:newTodoBullets},
-                {new:true}
+            todo = await Todo.findOneAndUpdate(
+                {"_id":id,"bullets._id":id2},
+                {"$set":{
+                    "bullets.$.isDoneBullet":isDoneBullet
+                }}
             )
             return res.json({"message":"complete"})
         } catch (error) {
