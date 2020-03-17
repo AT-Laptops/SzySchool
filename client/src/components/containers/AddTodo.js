@@ -10,21 +10,21 @@ const AddTodo = () => {
     const [, updateComponent] = useState();
     const {form, handleChange } = useInput({
         date: day,
-        content: '',
+        title: '',
     });
     const forceUpdate = useCallback(() => updateComponent({}), []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addTodo(form.content, form.date));
-        form.content = '';
+        dispatch(addTodo(form.title, form.date));
+        form.title = '';
         forceUpdate();
     }
 
     return (
         <form onSubmit={ handleSubmit } className='addTodoForm'>
             <h2>{ header }</h2>
-            <input type="text" name='content' value={ form.content } onChange={ handleChange }/>
+            <input type="text" name='title' value={ form.title } onChange={ handleChange }/>
             <input type='submit' value='Dodaj' onClick={ handleSubmit }/>
         </form>
     )
