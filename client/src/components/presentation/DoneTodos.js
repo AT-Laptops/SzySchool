@@ -5,7 +5,7 @@ import { FaChevronDown } from 'react-icons/fa';
 import { MdCheckBox} from 'react-icons/md';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { GoPencil } from 'react-icons/go';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaPlus } from 'react-icons/fa';
 
 const UndoneTodos = (props) => {
     const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const UndoneTodos = (props) => {
                     <p className='todos__todo' onClick={ () => { dispatch(setTodo(todo, props.date)) } }> { todo.title } </p>
                     <FaChevronDown onClick={ () => setState(!state) } className='todos__icons todos__icons--done'></FaChevronDown>
                     <div className={ state ? 'todos__functions' : 'todos__functions todos__functions--hide'}>
-                        <AiFillPlusCircle></AiFillPlusCircle>
-                        <GoPencil></GoPencil>
-                        <FaTrashAlt></FaTrashAlt>
+                        <FaPlus className='todos__add'></FaPlus>
+                        <GoPencil className='todos__edit'></GoPencil>
+                        <FaTrashAlt className='todos__delete'></FaTrashAlt>
                     </div>
                 </div>
             )

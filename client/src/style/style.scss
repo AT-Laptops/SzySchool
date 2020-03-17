@@ -250,6 +250,14 @@ body {
     }
 }
 
+@mixin todos-function {
+    margin-left: 10px;
+    padding: 8px;
+    background-color: black;
+    border-radius: 50%;
+    color: whitesmoke;
+}
+
 .todos {
     padding: 16px;
     &__header-box {
@@ -323,9 +331,20 @@ body {
     // }
     &__functions {
         width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+        align-items: center;
     }
     &__functions--hide {
         display: none;
+    }
+    &__add, &__edit {
+        @include todos-function;
+    }
+    &__delete {
+        @include todos-function;
+        background-color: red;
     }
 }
 
