@@ -2,7 +2,7 @@ import React from 'react';
 import { setTodo } from './../../actions/setTodo';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronDown } from 'react-icons/fa';
-import { MdCheckBoxOutlineBlank, MdCheckBox} from 'react-icons/md';
+import { MdCheckBoxOutlineBlank } from 'react-icons/md';
 
 const UndoneTodos = (props) => {
     const dispatch = useDispatch();

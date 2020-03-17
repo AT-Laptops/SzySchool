@@ -1,4 +1,4 @@
-import { SHOW_ADD_EVENT_POPUP, SHOW_ADD_TODO_POPUP } from './../actions/types';
+import { SHOW_ADD_EVENT_POPUP } from './../actions/types';
 
 const initialState = {
   addEventPopup:false
