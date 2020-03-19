@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setTodo } from './../../actions/setTodo';
+import { changeTodoStatus } from './../../actions/changeTodoStatus';
+import { todoChange } from './../../actions/todoChange';
 
 import { FaChevronDown } from 'react-icons/fa';
 import { MdCheckBoxOutlineBlank } from 'react-icons/md';
@@ -10,7 +11,7 @@ import { FaTrashAlt, FaPlus } from 'react-icons/fa';
 const Todo = (props) => {
     const [disabled, setDisabled] = useState(true);
     const [state, setState] = useState(false);
-    const [todo, setTodo] = useState(props.todo.title)
+    const [todo, setTodo] = useState(props.todo)
     const input = useRef(null);
     const dispatch = useDispatch();
 
@@ -21,27 +22,30 @@ const Todo = (props) => {
     }, [disabled]);
 
     const handleChange = e => {
-        setTodo(e.target.value);
-        console.log(todo);
+        setTodo({
+            ...todo,
+            [e.target.name]: e.target.value,
+        });
     }
 
     const saveTodoChange = e => {
         if (e.key === 'Enter') {
             console.log('working?');
             setDisabled(true);
+            dispatch(todoChange(todo, props.date));
         }
     }
 
     return (
         <div className='todos__wrapper'>
-            <MdCheckBoxOutlineBlank className='todos__icons' onClick={ () => { dispatch(setTodo(props.todo, props.date)) } }></MdCheckBoxOutlineBlank>
+            <MdCheckBoxOutlineBlank className='todos__icons' onClick={ () => { dispatch(changeTodoStatus(todo, props.date)) } }></MdCheckBoxOutlineBlank>
             <input 
                 type='text' 
                 className='todos__todo' 
-                value={ todo } 
+                value={ todo.title } 
                 disabled={ disabled } 
                 ref={ input }
-                name='todo'
+                name='title'
                 onChange={ handleChange }
                 onKeyDown={ saveTodoChange }
             />

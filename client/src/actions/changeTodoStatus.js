@@ -1,7 +1,7 @@
 import { todos } from './todos';
 import axios from 'axios';
 
-export const setTodo = (todo, date) => async dispatch => {
+export const changeTodoStatus = (todo, date) => async dispatch => {
 
     const config = {
         headers: {

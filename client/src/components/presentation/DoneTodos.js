@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { setTodo } from './../../actions/setTodo';
+import { changeTodoStatus } from './../../actions/changeTodoStatus';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronDown } from 'react-icons/fa';
 import { MdCheckBox} from 'react-icons/md';
@@ -17,7 +17,7 @@ const UndoneTodos = (props) => {
         if (todo.isDone && todo.bullets.length === 0) {
             doneTodos.push(
                 <div className='todos__wrapper todos__wrapper--done' key={ todo._id } >
-                    <MdCheckBox className='todos__icons todos__icons--done' onClick={ () => { dispatch(setTodo(todo, props.date)) } }></MdCheckBox>
+                    <MdCheckBox className='todos__icons todos__icons--done' onClick={ () => { dispatch(changeTodoStatus(todo, props.date)) } }></MdCheckBox>
                     <input type='text' className='todos__todo' defaultValue={ todo.title } disabled={ true }/>
                     <FaChevronDown onClick={ () => setState(!state) } className='todos__icons todos__icons--done'></FaChevronDown>
                     <div className={ state ? 'todos__functions' : 'todos__functions todos__functions--hide'}>
