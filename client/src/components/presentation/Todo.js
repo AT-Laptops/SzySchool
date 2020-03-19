@@ -18,7 +18,7 @@ const Todo = (props) => {
 
     useEffect(() => {
         if (!disabled) {
-            input.current.focus();
+            input.current.select();
         }
     }, [disabled]);
 
