@@ -11,17 +11,18 @@ const UndoneTodos = (props) => {
     const dispatch = useDispatch();
     const todos = useSelector(state => state.reminder.todos);
     const [state, setState] = useState(false);
+    const [disabled, setDisabled] = useState(true);
     let doneTodos = [];
     todos.map((todo) => {
         if (todo.isDone && todo.bullets.length === 0) {
             doneTodos.push(
                 <div className='todos__wrapper todos__wrapper--done' key={ todo._id } >
                     <MdCheckBox className='todos__icons todos__icons--done' onClick={ () => { dispatch(setTodo(todo, props.date)) } }></MdCheckBox>
-                    <p className='todos__todo' onClick={ () => { dispatch(setTodo(todo, props.date)) } }> { todo.title } </p>
+                    <input type='text' className='todos__todo' defaultValue={ todo.title } disabled={ true }/>
                     <FaChevronDown onClick={ () => setState(!state) } className='todos__icons todos__icons--done'></FaChevronDown>
                     <div className={ state ? 'todos__functions' : 'todos__functions todos__functions--hide'}>
                         <FaPlus className='todos__add'></FaPlus>
-                        <GoPencil className='todos__edit'></GoPencil>
+                        <GoPencil className='todos__edit' onClick={ () => setDisabled(!disabled) }></GoPencil>
                         <FaTrashAlt className='todos__delete'></FaTrashAlt>
                     </div>
                 </div>
