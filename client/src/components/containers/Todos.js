@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import UndoneTodos from './../presentation/UndoneTodos';
-import DoneTodos from './../presentation/DoneTodos';
+import SingleTodos from './../presentation/SingleTodos';
 import AddBox from './../presentation/AddBox';
 import AddTodo from './AddTodo';
 
@@ -19,8 +18,7 @@ const Todos = () => {
             </div>
             <div className='todos__today'>
                 <h2 className='todos__today-header'>DZISIAJ</h2>
-                <UndoneTodos date={ date }></UndoneTodos>
-                <DoneTodos date={ date }></DoneTodos>
+                <SingleTodos date={ date }></SingleTodos>
             </div>
                 {/* <AddBox text='Dodaj Todo' show={ isVisible }>
                     <AddTodo />

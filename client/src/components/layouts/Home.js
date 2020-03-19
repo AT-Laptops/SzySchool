@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Sidebar from './Sidebar';
-import UndoneTodos from './../presentation/UndoneTodos';
 import { useDispatch } from 'react-redux';
 import { todos } from './../../actions/todos';
 import { events } from './../../actions/events';
@@ -20,7 +19,6 @@ const Home = () => {
         <div className='home'>
             <div className='home__content'>
                 <h3 className='home__header'> { day } </h3>
-                <UndoneTodos date={ date }></UndoneTodos>
             </div>
             <Sidebar></Sidebar>
         </div>

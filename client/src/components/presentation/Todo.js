@@ -7,6 +7,7 @@ import { FaChevronDown } from 'react-icons/fa';
 import { MdCheckBoxOutlineBlank } from 'react-icons/md';
 import { GoPencil } from 'react-icons/go';
 import { FaTrashAlt, FaPlus } from 'react-icons/fa';
+import { MdCheckBox} from 'react-icons/md';
 
 const Todo = (props) => {
     const [disabled, setDisabled] = useState(true);
@@ -37,8 +38,14 @@ const Todo = (props) => {
     }
 
     return (
-        <div className='todos__wrapper'>
-            <MdCheckBoxOutlineBlank className='todos__icons' onClick={ () => { dispatch(changeTodoStatus(todo, props.date)) } }></MdCheckBoxOutlineBlank>
+        <div className={ props.todo.isDone ? 
+            'todos__wrapper todos__wrapper--done' : 
+            'todos__wrapper'
+            }>
+            { props.todo.isDone ?
+                <MdCheckBox className='todos__icons todos__icons--done' onClick={ () => { dispatch(changeTodoStatus(todo, props.date)) } }></MdCheckBox> :
+                <MdCheckBoxOutlineBlank className='todos__icons' onClick={ () => { dispatch(changeTodoStatus(todo, props.date)) } }></MdCheckBoxOutlineBlank>
+            }
             <input 
                 type='text' 
                 className='todos__todo' 

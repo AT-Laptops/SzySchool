@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import Todo from './../presentation/Todo';
+import Todo from './Todo';
 
-const UndoneTodos = (props) => {
+const SingleTodos = (props) => {
     const todos = useSelector(state => state.reminder.todos);
     let undoneTodos = [];
     todos.map((todo) => {
-        if (!todo.isDone && todo.bullets.length === 0) {
+        if (todo.bullets.length === 0) {
             undoneTodos.push(
                 <Todo date={ props.date } todo={ todo }  key={ todo._id } ></Todo>
             )
@@ -24,4 +24,4 @@ const UndoneTodos = (props) => {
     );
 }
 
-export default React.memo(UndoneTodos);
+export default React.memo(SingleTodos);
