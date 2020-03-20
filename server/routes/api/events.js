@@ -4,13 +4,14 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Event = require('../../models/Event');
+const EventPredefinedType  = require('../../models/EventPredefinedType')
 
 // @route   GET api/events/types
 // @desc    Get all predefined types of events
 // @access  Private
 router.get('/types',auth,async(req,res)=>{
   try {
-    const types = Event.schema.path('predefinedType').enumValues
+    const types = await EventPredefinedType.find()
     res.json(types);
   } catch (error) {
     console.error(error.message);
@@ -24,7 +25,7 @@ router.get('/types',auth,async(req,res)=>{
 // @access  Private
 router.get('/mine',auth,async(req,res)=>{
   try {
-    const event = await Event.find({owner: req.user.id});
+    const event = await Event.find({owner: req.user.id}).populate({path:'predefinedType'});
     res.json(event)
   } catch (error) {
     console.error(error.message);
@@ -76,7 +77,7 @@ router.post('/',[check('date','Date is required').not().isEmpty()],auth,async(re
     date1 = date1.setHours(0,0,0,0)
     let date2 = new Date(date)
     date2 = date2.setHours(23,59,59,999)
-    const event = await Event.find({owner: req.user.id,date:{"$gte": date1 , "$lt": date2}})
+    const event = await Event.find({owner: req.user.id,date:{"$gte": date1 , "$lt": date2}}).populate({path:'predefinedType'});
     res.json(event);
   } catch (error) {
     console.error(error.message);
@@ -90,7 +91,7 @@ router.post('/',[check('date','Date is required').not().isEmpty()],auth,async(re
 router.get('/:id',auth,async(req,res)=>{
   const id = req.params.id;
   try {
-      event = await Event.findById(id);
+      event = await Event.findById(id).populate({path:'predefinedType'});;
       res.json(event);
   } catch (error) {
       console.error(error.message);

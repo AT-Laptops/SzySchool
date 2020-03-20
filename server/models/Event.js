@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const EventSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -21,9 +22,9 @@ const EventSchema = new mongoose.Schema({
     default:""
   },
   predefinedType: {
-    type:String,
-    enum: ['Sprawdzian','Kartkówka','Egzamin','Zaliczenie','Ćwiczenia','Inne'],
-    default: "Inne",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'eventpredefinedtype',
+    default:null
   },
   lessonSubject: {
     type: mongoose.Schema.Types.ObjectId,
