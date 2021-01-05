@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@tinymce/tinymce-react": "^3.5.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "axios-https-proxy-fix": "^0.17.1",
     "baseui": "^9.63.0",
     "node-sass": "^4.13.1",
